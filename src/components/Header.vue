@@ -1,8 +1,3 @@
-/**
- * 
- * @authors sean(eli01linux@aliyun.com)
- * @date    2016-12-05 15:25:29
- */
 <script>
   export default {
     data () {

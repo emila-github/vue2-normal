@@ -7,6 +7,9 @@ let config = {
   env: Env,
   views: [
     'index',
+    'layout',
+    'form',
+    'tree',
     'e01_helloworld'
   ]
 }
