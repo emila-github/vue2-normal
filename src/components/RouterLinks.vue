@@ -80,12 +80,12 @@
 
 <template>
   <div>
-    <div id="links">
-      <router-link
-        v-for="(item, index) in views"
-        :to="{name: item}"
-        :key="index">{{ item }}</router-link>
-    </div>
+    <!--<div id="links">-->
+      <!--<router-link-->
+        <!--v-for="(item, index) in views"-->
+        <!--:to="{name: item}"-->
+        <!--:key="index">{{ item }}</router-link>-->
+    <!--</div>-->
     <el-tree :data="treeViewsc" :props="defaultProps" @node-click="handleNodeClick"></el-tree>
   </div>
 </template>

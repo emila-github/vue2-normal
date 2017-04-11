@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <MyTitle id="header"></MyTitle>
-    <el-row>
+    <el-row :gutter="10">
       <el-col :span="4">
         <RouterLinks></RouterLinks>
       </el-col>
