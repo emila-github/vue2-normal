@@ -18,13 +18,13 @@
       }
     },
     created () {
-      console.log('created')
+      // console.log('created')
       this.getTreeDatas()
     },
     methods: {
       getTreeDatas () {
-        console.log('getTreeDatas')
-        console.log('views=', this.views)
+        // console.log('getTreeDatas')
+        // console.log('views=', this.views)
         let treeDatas = []
         for (let i = 0, len = this.views.length; i < len; i++) {
           let item = this.views[i]
@@ -38,9 +38,9 @@
         return treeDatas
       },
       handleNodeClick (data, node, self) {
-//        console.log(data, node, self, data.url)
+       // console.log(data, node, self, data.url)
         this.$router.push({name: data.url})
-//        this.$router.go('/views/' + data.label)
+       // this.$router.go('/views/' + data.label)
       }
     }
   }
