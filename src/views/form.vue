@@ -49,6 +49,7 @@
 </template>
 
 <script>
+  import axios from 'axios'
   export default {
     data () {
       return {
@@ -67,6 +68,14 @@
     methods: {
       onSubmit () {
         console.log('submit!', this.form.name)
+        // 为给定 ID 的 user 创建请求
+        axios.get('/users/join?ID=12345')
+          .then(function (response) {
+            console.log(response)
+          })
+          .catch(function (error) {
+            console.log(error)
+          })
       }
     }
   }
