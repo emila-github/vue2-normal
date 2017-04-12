@@ -10,6 +10,7 @@ let config = {
     'layout',
     'form',
     'tree',
+    'prop-emit',
     'e01_helloworld'
   ]
 }

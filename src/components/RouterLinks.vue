@@ -28,7 +28,7 @@
         let treeDatas = []
         for (let i = 0, len = this.views.length; i < len; i++) {
           let item = this.views[i]
-          console.log(item)
+          // console.log(item)
           treeDatas.push({
             url: item,
             label: item,
