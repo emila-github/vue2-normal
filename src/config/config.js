@@ -16,6 +16,7 @@ let config = {
     'ex12-vuex-mutations',
     'ex13-vuex-mutations-payload',
     'ex14-vuex-mutations-types',
+    'ex15-vuex-mapMutations',
     'index',
     'layout',
     'form',
