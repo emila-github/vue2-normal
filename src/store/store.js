@@ -14,7 +14,19 @@ const store = new Vuex.Store({
   },
   mutations: {
     increment: state => state.count++,
-    decrement: state => state.count--
+    decrement: state => state.count--,
+    increment2 (state) {
+      // 变更状态
+      state.count++
+    },
+    decrement2 (state) {
+      // 变更状态
+      state.count--
+    },
+    incrementPayload (state, payload) {
+      // 变更状态
+      state.count += payload.amount
+    }
   },
   getters: {
     doneTodos: state => {

@@ -13,6 +13,8 @@ let config = {
     'ex09-vuex-mapState',
     'ex10-vuex-getters',
     'ex11-vuex-mapGetters',
+    'ex12-vuex-mutations',
+    'ex12-vuex-mutations-payload',
     'index',
     'layout',
     'form',
