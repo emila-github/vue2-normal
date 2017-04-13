@@ -8,9 +8,9 @@ let config = {
   views: [
     'e01_helloworld',
     'prop-emit',
-    'vuex-app1',
-    'vuex-app2',
-    'vuex-app3',
+    'ex07-vuex-local',
+    'ex08-vuex-global',
+    'ex09-vuex-mapState',
     'ex10-vuex-getters',
     'ex11-vuex-mapGetters',
     'index',
