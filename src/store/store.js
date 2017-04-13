@@ -26,6 +26,7 @@ const store = new Vuex.Store({
       state.count--
     },
     incrementPayload (state, payload) {
+      console.log('do incrementPayload')
       // 变更状态
       state.count += payload.amount
     },
@@ -56,6 +57,19 @@ const store = new Vuex.Store({
     decrementAsync (context) {
       setTimeout(() => {
         context.commit('decrement')
+      }, 1000)
+    },
+    incrementAsyncPayload10 ({ commit, state }, payload) {
+      console.log('do incrementAsyncPayload10')
+      setTimeout(() => {
+        console.log(state, payload)
+        commit('incrementPayload', payload)
+      }, 1000)
+    },
+    decrementAsyncPayload10 (context, payload) {
+      setTimeout(() => {
+        console.log(context.state, payload)
+        context.commit('decrementPayload', payload)
       }, 1000)
     }
   }

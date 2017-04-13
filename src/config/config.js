@@ -18,6 +18,7 @@ let config = {
     'ex14-vuex-mutations-types',
     'ex15-vuex-mapMutations',
     'ex16-vuex-action-easy',
+    'ex17-vuex-action-payload',
     'index',
     'layout',
     'form',
