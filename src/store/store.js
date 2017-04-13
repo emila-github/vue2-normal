@@ -15,6 +15,16 @@ const store = new Vuex.Store({
   mutations: {
     increment: state => state.count++,
     decrement: state => state.count--
+  },
+  getters: {
+    doneTodos: state => {
+      return state.todos.filter(todo => todo.done)
+    },
+    // Getters 也可以接受其他 getters 作为第二个参数：
+    donedoneTodos: (state, getters) => {
+      return getters.doneTodos.length
+    }
+
   }
 })
 export default store

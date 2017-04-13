@@ -12,6 +12,7 @@ let config = {
     'vuex-app2',
     'vuex-app3',
     'ex10-vuex-getters',
+    'ex11-vuex-mapGetters',
     'index',
     'layout',
     'form',
