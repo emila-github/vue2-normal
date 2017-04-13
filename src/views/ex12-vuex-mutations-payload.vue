@@ -6,7 +6,7 @@
     <p>count: {{ count }}</p>
     <p>
       <button @click="increment">+10</button>
-      <button @click="decrement">-</button>
+      <button @click="decrement">-2</button>
     </p>
   </div>
 </template>
@@ -28,8 +28,12 @@
           amount: 10
         })
       },
+      // 提交 mutation 的另一种方式是直接使用包含 type 属性的对象：
       decrement () {
-        this.$store.commit('decrement2')
+        this.$store.commit({
+          type: 'decrementPayload',
+          amount: 2
+        })
       }
     }
   }

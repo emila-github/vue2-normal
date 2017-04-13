@@ -26,6 +26,10 @@ const store = new Vuex.Store({
     incrementPayload (state, payload) {
       // 变更状态
       state.count += payload.amount
+    },
+    decrementPayload (state, payload) {
+      // 变更状态
+      state.count -= payload.amount
     }
   },
   getters: {
