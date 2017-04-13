@@ -5,6 +5,11 @@ import App from './App'
 import router from './router'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
+
+import Vuex from 'vuex'
+
+// 告诉 vue “使用” vuex
+Vue.use(Vuex)
 Vue.use(ElementUI)
 Vue.config.productionTip = false
 

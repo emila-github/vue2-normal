@@ -6,12 +6,13 @@ import Env from './Env'
 let config = {
   env: Env,
   views: [
+    'e01_helloworld',
+    'prop-emit',
+    'vuex-app1',
     'index',
     'layout',
     'form',
-    'tree',
-    'prop-emit',
-    'e01_helloworld'
+    'tree'
   ]
 }
 
