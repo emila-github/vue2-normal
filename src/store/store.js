@@ -46,7 +46,18 @@ const store = new Vuex.Store({
     donedoneTodos: (state, getters) => {
       return getters.doneTodos.length
     }
-
+  },
+  actions: {
+    incrementAsync ({ commit }) {
+      setTimeout(() => {
+        commit('increment')
+      }, 1000)
+    },
+    decrementAsync (context) {
+      setTimeout(() => {
+        context.commit('decrement')
+      }, 1000)
+    }
   }
 })
 export default store
