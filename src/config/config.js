@@ -10,6 +10,7 @@ let config = {
     'prop-emit',
     'vuex-app1',
     'vuex-app2',
+    'vuex-app3',
     'index',
     'layout',
     'form',
