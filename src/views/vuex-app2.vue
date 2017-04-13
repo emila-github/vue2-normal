@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>在局部引入vuex</p>
+    <p>在全局引入vuex</p>
     <p>{{ count }}</p>
     <p>
       <button @click="increment">+</button>
@@ -10,28 +10,18 @@
 </template>
 
 <script>
-  import Vuex from 'vuex'
-  const store = new Vuex.Store({
-    state: {
-      count: 0
-    },
-    mutations: {
-      increment: state => state.count++,
-      decrement: state => state.count--
-    }
-  })
   export default {
     computed: {
       count () {
-        return store.state.count
+        return this.$store.state.count
       }
     },
     methods: {
       increment () {
-        store.commit('increment')
+        this.$store.commit('increment')
       },
       decrement () {
-        store.commit('decrement')
+        this.$store.commit('decrement')
       }
     }
   }

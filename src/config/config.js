@@ -9,6 +9,7 @@ let config = {
     'e01_helloworld',
     'prop-emit',
     'vuex-app1',
+    'vuex-app2',
     'index',
     'layout',
     'form',
