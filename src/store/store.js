@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import * as types from './mutation-types'
+
 // 告诉 vue “使用” vuex
 Vue.use(Vuex)
 const store = new Vuex.Store({
@@ -30,6 +32,10 @@ const store = new Vuex.Store({
     decrementPayload (state, payload) {
       // 变更状态
       state.count -= payload.amount
+    },
+    [types.SOME_MUTATION] (state, payload) {
+      // 取个别名自己玩
+      state.count += payload.amount
     }
   },
   getters: {
