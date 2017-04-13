@@ -11,6 +11,7 @@ let config = {
     'vuex-app1',
     'vuex-app2',
     'vuex-app3',
+    'ex10-vuex-getters',
     'index',
     'layout',
     'form',
