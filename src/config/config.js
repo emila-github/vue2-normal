@@ -20,6 +20,7 @@ let config = {
     'ex16-vuex-action-easy',
     'ex17-vuex-action-payload',
     'ex18-vuex-mapActions',
+    'ex19-vuex-action-promise',
     'index',
     'layout',
     'form',

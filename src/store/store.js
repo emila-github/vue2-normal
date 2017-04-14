@@ -37,6 +37,12 @@ const store = new Vuex.Store({
     [types.SOME_MUTATION] (state, payload) {
       // 取个别名自己玩
       state.count += payload.amount
+    },
+    someMutation (state) {
+      state.count++
+    },
+    someOtherMutation (state) {
+      state.count--
     }
   },
   getters: {
@@ -71,6 +77,35 @@ const store = new Vuex.Store({
         console.log(context.state, payload)
         context.commit('decrementPayload', payload)
       }, 1000)
+    },
+    actionA ({ commit }) {
+      return new Promise((resolve, reject) => {
+        setTimeout(() => {
+          console.log('actionA successed')
+          commit('someMutation')
+          resolve()
+        }, 1000)
+      })
+    },
+    // 调用actionA
+    actionB ({ dispatch, commit }) {
+      return dispatch('actionA').then(() => {
+        console.log('actionB successed')
+        commit('someOtherMutation')
+      })
+    },
+    // 两个异步请求
+    actionC ({ dispatch, commit }) {
+      return dispatch('actionA').then(() => {
+        console.log('actionA successed then!')
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            console.log('actionC successed')
+            commit('someOtherMutation')
+            resolve()
+          }, 1000)
+        })
+      })
     }
   }
 })
