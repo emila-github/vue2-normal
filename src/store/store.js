@@ -2,10 +2,14 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import * as types from './mutation-types'
+import moduleA from './moduleA/index'
 
 // 告诉 vue “使用” vuex
 Vue.use(Vuex)
 const store = new Vuex.Store({
+  modules: {
+    moduleA
+  },
   state: {
     count: 0,
     todos: [
@@ -16,7 +20,10 @@ const store = new Vuex.Store({
   },
   mutations: {
     increment: state => state.count++,
-    decrement: state => state.count--,
+    decrement: (state) => {
+      console.log('decrement root', state)
+      state.count = state.count - 1
+    },
     increment2 (state) {
       // 变更状态
       state.count++

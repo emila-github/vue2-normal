@@ -21,6 +21,7 @@ let config = {
     'ex17-vuex-action-payload',
     'ex18-vuex-mapActions',
     'ex19-vuex-action-promise',
+    'ex20-vuex-module',
     'index',
     'layout',
     'form',
