@@ -1,13 +1,15 @@
 <template>
   <ul class="hero-list">
-    <router-link tag="li" v-for="item in heros" :to="{path: 'heroDetail', query: {id: item.iType}}">
-      <span class="waikuang">
-          <img v-bind:src="item.imgSrc" alt="" />
-      </span>
-      <p>{{item.sName}}</p>
-      <div v-if="item.new_type==1" class="hero_new"></div>
-      <div v-if="item.pay_type==10" class="hero_free"></div>
-    </router-link>
+    <li v-for="item in heros" :key="item.iType">
+      <router-link :to="{path: 'heroDetail', query: {id: item.iType}}">
+        <span class="waikuang">
+            <img v-bind:src="item.imgSrc" alt="" />
+        </span>
+        <p>{{item.sName}}</p>
+        <div v-if="item.new_type==1" class="hero_new"></div>
+        <div v-if="item.pay_type==10" class="hero_free"></div>
+      </router-link>
+    </li>
   </ul>
 </template>
 <script>

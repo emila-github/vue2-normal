@@ -1,6 +1,6 @@
 <template>
   <el-tabs v-model="activeName" @tab-click="handleClick"  type="border-card">
-    <el-tab-pane  v-for="tab in tabs" :label="tab.name" :name="tab.id">
+    <el-tab-pane  v-for="tab in tabs" :label="tab.name" :name="tab.id" :key="tab.id">
       <hero-list :heros="tab.id === 'all' ? allHeroList : heroList"></hero-list>
     </el-tab-pane>
   </el-tabs>

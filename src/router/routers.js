@@ -22,6 +22,15 @@ const routers = [
       })
     }
   },
+  {
+    path: '/views/heroDetail',
+    name: 'heroDetail',
+    component: resolve => {
+      require.ensure([], () => {
+        resolve(require('../views/heroDetail'))
+      })
+    }
+  },
   ...viewsRouters
 ]
 
