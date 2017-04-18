@@ -1,5 +1,7 @@
 # vue2-normal
 
+vuex 练习
+
 > A Vue.js project
 
 ## Build Setup

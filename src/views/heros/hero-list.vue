@@ -35,6 +35,13 @@
     justify-content: flex-start;
     li
       flex: 1;
+      max-width: 90px;
+      padding: 10px;
       text-align: center;
       cursor: poinrer;
+      font-size: 12px;
+      a
+        color: #000;
+      img
+        border-radius: 10px;
 </style>
