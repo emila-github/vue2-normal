@@ -3,7 +3,8 @@
     <MyTitle id="header"></MyTitle>
     <el-row :gutter="10">
       <el-col :span="4">
-        <RouterLinks></RouterLinks>
+        <NavMenu></NavMenu>
+        <!--<RouterLinks></RouterLinks>-->
       </el-col>
       <el-col :span="20">
         <h2>Content</h2>
@@ -16,11 +17,13 @@
 <script>
 import RouterLinks from './components/RouterLinks'
 import MyTitle from './components/Header'
+import NavMenu from './components/NavMenu'
 export default {
   name: 'app',
   components: {
     RouterLinks,
-    MyTitle
+    MyTitle,
+    NavMenu
   }
 }
 </script>
