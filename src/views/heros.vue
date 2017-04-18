@@ -1,25 +1,7 @@
 <template>
   <el-tabs v-model="activeName" @tab-click="handleClick"  type="border-card">
-    <el-tab-pane label="全部" name="all">
-      <hero-list :heros="allHeroList"></hero-list>
-    </el-tab-pane>
-    <el-tab-pane label="战士" name="1">
-      <hero-list :heros="heroList"></hero-list>
-    </el-tab-pane>
-    <el-tab-pane label="法师" name="2">
-      <hero-list :heros="heroList"></hero-list>
-    </el-tab-pane>
-    <el-tab-pane label="坦克" name="3">
-      <hero-list :heros="heroList"></hero-list>
-    </el-tab-pane>
-    <el-tab-pane label="刺客" name="4">
-      <hero-list :heros="heroList"></hero-list>
-    </el-tab-pane>
-    <el-tab-pane label="射手" name="5">
-      <hero-list :heros="heroList"></hero-list>
-    </el-tab-pane>
-    <el-tab-pane label="辅助" name="6">
-      <hero-list :heros="heroList"></hero-list>
+    <el-tab-pane  v-for="tab in tabs" :label="tab.name" :name="tab.id">
+      <hero-list :heros="tab.id === 'all' ? allHeroList : heroList"></hero-list>
     </el-tab-pane>
   </el-tabs>
 </template>
@@ -30,6 +12,28 @@
   export default {
     data () {
       return {
+        tabs: [{
+          id: 'all',
+          name: '全部'
+        }, {
+          id: '1',
+          name: '战士'
+        }, {
+          id: '2',
+          name: '法师'
+        }, {
+          id: '3',
+          name: '坦克'
+        }, {
+          id: '4',
+          name: '刺客'
+        }, {
+          id: '5',
+          name: '射手'
+        }, {
+          id: '6',
+          name: '辅助'
+        }],
         heroList: [],
         activeName: 'all'
       }
@@ -46,7 +50,7 @@
           var item = {
             iType: v['ename'],
             sName: v['cname'],
-            imgSrc: '// game.gtimg.cn/images/yxzj/ingame/index_heros/' + v['ename'] + '.jpg',
+            imgSrc: '//game.gtimg.cn/images/yxzj/ingame/index_heros/' + v['ename'] + '.jpg',
             new_type: v['new_type'],
             pay_type: v['pay_type'],
             hero_type: v['hero_type'],

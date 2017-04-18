@@ -1,6 +1,13 @@
 <template>
-  <ul>
-    <li v-for="hero in heros">{{hero.sName}}</li>
+  <ul class="hero-list">
+    <router-link tag="li" v-for="item in heros" :to="{path: 'heroDetail', query: {id: item.iType}}">
+      <span class="waikuang">
+          <img v-bind:src="item.imgSrc" alt="" />
+      </span>
+      <p>{{item.sName}}</p>
+      <div v-if="item.new_type==1" class="hero_new"></div>
+      <div v-if="item.pay_type==10" class="hero_free"></div>
+    </router-link>
   </ul>
 </template>
 <script>
@@ -17,3 +24,15 @@
     }
   }
 </script>
+<style scoped lang="sass">
+  .hero-list
+    display: flex;
+    list-style: none;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    li
+      flex: 1;
+      text-align: center;
+      cursor: poinrer;
+</style>
