@@ -11,6 +11,9 @@ module.exports = {
   entry: {
     app: './src/main.js'
   },
+  externals: {
+    'jquery': 'jQuery'
+  },
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',

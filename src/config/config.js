@@ -22,6 +22,7 @@ let config = {
     'ex18-vuex-mapActions',
     'ex19-vuex-action-promise',
     'ex20-vuex-module',
+    'heros',
     'index',
     'layout',
     'form',
