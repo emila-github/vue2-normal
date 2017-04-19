@@ -23,6 +23,8 @@ let config = {
     'ex19-vuex-action-promise',
     'ex20-vuex-module',
     'heros',
+    'heros-async',
+    'heros-vuex',
     'index',
     'layout',
     'form',
