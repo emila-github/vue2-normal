@@ -1,12 +1,12 @@
 <template>
   <div id="app">
     <MyTitle id="header"></MyTitle>
-    <el-row :gutter="10">
+    <el-row>
       <el-col :span="4">
         <NavMenu></NavMenu>
         <!--<RouterLinks></RouterLinks>-->
       </el-col>
-      <el-col :span="20">
+      <el-col :span="20" style="padding: 10px;">
         <h2>Content</h2>
         <router-view></router-view>
       </el-col>
@@ -35,7 +35,6 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: left;
   color: #2c3e50;
-  margin-top: 60px;
 }
 *{margin: 0; padding: 0;}
 

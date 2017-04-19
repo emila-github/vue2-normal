@@ -25,7 +25,7 @@
   <el-menu default-active="2" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" theme="dark" :router="true">
     <el-submenu index="1">
       <template slot="title">vuex</template>
-      <el-menu-item v-for="(item, index) in views" :index="item">{{item}}</el-menu-item>
+      <el-menu-item v-for="(item, index) in views" :index="'/views/'+item" :key="item">{{item}}</el-menu-item>
       <el-menu-item-group title="分组2">
         <el-menu-item index="1-3">选项3</el-menu-item>
       </el-menu-item-group>
