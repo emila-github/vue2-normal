@@ -1,11 +1,35 @@
 import Vue from 'vue'
 const state = {
+  category: [
+    {
+      id: '1',
+      name: '战士'
+    }, {
+      id: '2',
+      name: '法师'
+    }, {
+      id: '3',
+      name: '坦克'
+    }, {
+      id: '4',
+      name: '刺客'
+    }, {
+      id: '5',
+      name: '射手'
+    }, {
+      id: '6',
+      name: '辅助'
+    }
+  ], // 英雄分类
   baseHeros: [], // 接口拉取的初始数据
   allHeros: [] // 格式化后的全部英雄数据
 }
 const getters = {
   allHeros: state => {
     return state.allHeros
+  },
+  heroTypes: state => {
+    return state.category
   }
 }
 const mutations = {

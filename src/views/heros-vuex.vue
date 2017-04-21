@@ -21,28 +21,10 @@
     store,
     data () {
       return {
-        tabs: [
+        baseTabs: [
           {
             id: 'all',
             name: '全部'
-          }, {
-            id: '1',
-            name: '战士'
-          }, {
-            id: '2',
-            name: '法师'
-          }, {
-            id: '3',
-            name: '坦克'
-          }, {
-            id: '4',
-            name: '刺客'
-          }, {
-            id: '5',
-            name: '射手'
-          }, {
-            id: '6',
-            name: '辅助'
           }
         ],
         activeName: 'all'
@@ -53,8 +35,12 @@
         heros: 'baseHeros'
       }),
       ...mapGetters({
-        allHeroList: 'allHeros'
-      })
+        allHeroList: 'allHeros',
+        heroTypes: 'heroTypes'
+      }),
+      tabs () {
+        return [...this.baseTabs, ...this.heroTypes]
+      }
     },
     methods: {
       ...mapActions([
@@ -89,6 +75,7 @@
     },
     created () {
       let scope = this
+      console.log(this.tabs)
       scope.$store.dispatch('getAllHeros')
     }
   }
