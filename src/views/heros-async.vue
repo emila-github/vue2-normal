@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-row>
-      createdTime: {{createdTime}}; (methods)<br/>
+      createdTime: {{createdTime}}; (methods 必须手动调用)<br/>
       currentTime: {{currentTime}} ; (computed)<br/>
     </el-row>
     <el-row>

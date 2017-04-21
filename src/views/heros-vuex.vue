@@ -1,11 +1,7 @@
 <template>
   <div>
     <el-row>
-      createdTime: {{createdTime}}; (methods)<br/>
-      currentTime: {{currentTime}} ; (computed)<br/>
-    </el-row>
-    <el-row>
-      异步获取英雄列表
+      异步获取英雄列表 -vuex
     </el-row>
     <el-row>
       <el-tabs v-model="activeName" @tab-click="handleClick"  type="border-card">
@@ -17,14 +13,14 @@
   </div>
 </template>
 <script>
-  // import axios from 'axios'
+  import store from './heros-vuex/store/index'
+  import { mapState, mapGetters, mapActions } from 'vuex'
   // import heros from './heros/heros'
   import heroList from './heros/hero-list'
   export default {
+    store,
     data () {
       return {
-        time: '',
-        createdTime: '',
         tabs: [
           {
             id: 'all',
@@ -49,51 +45,25 @@
             name: '辅助'
           }
         ],
-        activeName: 'all',
-        heros: [], // 请求回来原始数据
-        allHeroList: [] // 全部英雄数据 加工后
+        activeName: 'all'
       }
     },
     computed: {
-      currentTime () {
-        return this.time
-      }
-      // allHeroList () {
-      //   console.log('allHeroList')
-      //   return this.filterData(this.heros)
-      // },
+      ...mapState({
+        heros: 'baseHeros'
+      }),
+      ...mapGetters({
+        allHeroList: 'allHeros'
+      })
     },
     methods: {
-      getCreatedTime () {
-        let scope = this
-        console.log('createdTime', scope.time)
-        scope.$set(scope, 'createdTime', scope.time)
-      },
-      getAllHeros () {
-        let scope = this
-        let url = '/hero/heros'
-        return scope.$http.get(url)
-      },
+      ...mapActions([
+        'getAllHeros'
+      ]),
       handleClick (tab, event) {
         // console.log(tab, event, tab.name)
         // let heroType = tab.name
         // this.changeHeroType(heroType)
-      },
-      filterData: function (data) {
-        let retData = []
-        $.each(data, function (k, v) {
-          let item = {
-            iType: v['ename'],
-            sName: v['cname'],
-            imgSrc: '//game.gtimg.cn/images/yxzj/ingame/index_heros/' + v['ename'] + '.jpg',
-            new_type: v['new_type'],
-            pay_type: v['pay_type'],
-            hero_type: v['hero_type'],
-            title: v['title']
-          }
-          retData.push(item)
-        })
-        return retData
       },
       changeHeroType (heroType) {
         let scope = this
@@ -102,8 +72,7 @@
           return []
         }
         if (heroType === 'all') {
-          // scope.heroList = scope.allHeroList  // 所有英雄
-          return scope.allHeroList
+          return scope.allHeroList // 所有英雄
         } else {
           let curTypeList = []
           $.each(scope.allHeroList, function (k, v) {
@@ -111,7 +80,6 @@
               curTypeList.push(v)
             }
           })
-          // scope.heroList = curTypeList
           return curTypeList
         }
       }
@@ -121,19 +89,7 @@
     },
     created () {
       let scope = this
-      setInterval(() => {
-        scope.$set(scope, 'time', new Date())
-      }, 1000)
-      setTimeout(() => {
-        scope.getCreatedTime()
-      }, 2000)
-      scope.getAllHeros().then(res => {
-        console.log('res=', res)
-        // scope.heros = res.data.data
-        scope.$set(scope, 'heros', JSON.parse(res.bodyText).data)
-        console.log(scope.heros)
-        scope.allHeroList = scope.filterData(scope.heros)
-      })
+      scope.$store.dispatch('getAllHeros')
     }
   }
 </script>
