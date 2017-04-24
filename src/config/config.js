@@ -25,6 +25,7 @@ let config = {
     'heros',
     'heros-async',
     'heros-vuex',
+    'chat',
     'index',
     'layout',
     'form',

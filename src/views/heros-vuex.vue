@@ -75,7 +75,6 @@
     },
     created () {
       let scope = this
-      console.log(this.tabs)
       scope.$store.dispatch('getAllHeros')
     }
   }
