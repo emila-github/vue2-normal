@@ -21,6 +21,9 @@ export default {
   },
   [types.SWITCH_THREAD] (state, { id }) {
     setCurrentThread(state, id)
+  },
+  [types.RECEIVE_MESSAGE] (state, { message }) {
+    addMessage(state, message)
   }
 }
 function createThread (state, id, name) {

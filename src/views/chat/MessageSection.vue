@@ -8,6 +8,7 @@
         :message="message">
       </message>
     </ul>
+    <textarea class="message-composer" @keyup.enter="sendMessage"></textarea>
   </div>
 </template>
 <script>
@@ -27,6 +28,16 @@
       })
     },
     methods: {
+      sendMessage (e) {
+        const text = e.target.value
+        if (text.trim()) {
+          this.$store.dispatch('sendMessage', {
+            text,
+            thread: this.thread
+          })
+          e.target.value = ''
+        }
+      }
     },
     components: {
       Message
