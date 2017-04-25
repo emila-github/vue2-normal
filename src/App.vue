@@ -1,8 +1,7 @@
 <template>
   <div id="app">
     <slot name="login" v-if="!username">
-      login<br/>
-      <button @click="login({username: 'wcjttt',password: '123'})">login</button>
+      <login></login>
     </slot>
     <slot v-if="username">
       <MyTitle id="header"></MyTitle>
@@ -21,19 +20,20 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
+import Login from './components/Login'
 import RouterLinks from './components/RouterLinks'
 import MyTitle from './components/Header'
 import NavMenu from './components/NavMenu'
 export default {
   name: 'app',
   components: {
+    Login,
     RouterLinks,
     MyTitle,
     NavMenu
   },
   methods: {
-    ...mapActions(['login'])
     // login () {
     //   console.log('login')
     //   this.$store.commit('setUsername', {username: 'wcj'})
