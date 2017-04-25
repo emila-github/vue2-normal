@@ -1,20 +1,27 @@
 <template>
   <div id="app">
-    <MyTitle id="header"></MyTitle>
-    <el-row>
-      <el-col :span="4">
-        <NavMenu></NavMenu>
-        <!--<RouterLinks></RouterLinks>-->
-      </el-col>
-      <el-col :span="20" style="padding: 10px;">
-        <h2>Content</h2>
-        <router-view></router-view>
-      </el-col>
-    </el-row>
+    <slot name="login" v-if="!username">
+      login<br/>
+      <button @click="login">login</button>
+    </slot>
+    <slot v-if="username">
+      <MyTitle id="header"></MyTitle>
+      <el-row>
+        <el-col :span="4">
+          <NavMenu></NavMenu>
+          <!--<RouterLinks></RouterLinks>-->
+        </el-col>
+        <el-col :span="20" style="padding: 10px;">
+          <h2>Content</h2>
+          <router-view></router-view>
+        </el-col>
+      </el-row>
+    </slot>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 import RouterLinks from './components/RouterLinks'
 import MyTitle from './components/Header'
 import NavMenu from './components/NavMenu'
@@ -24,6 +31,15 @@ export default {
     RouterLinks,
     MyTitle,
     NavMenu
+  },
+  methods: {
+    login () {
+      console.log('login')
+      this.$store.commit('setUsername', {username: 'wcj'})
+    }
+  },
+  computed: {
+    ...mapGetters(['username'])
   }
 }
 </script>

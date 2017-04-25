@@ -2,6 +2,7 @@ import Vue from 'vue'
 import * as types from './mutation-types'
 export default {
   [types.RECEIVE_ALL] (state, { messages }) {
+    // Vue.set(state, 'tmpMessages', messages)
     let latestMessage
     messages.forEach(message => {
       // create new thread if the thread doesn't exist
@@ -15,7 +16,7 @@ export default {
       // add message
       addMessage(state, message)
     })
-    // console.log(state)
+    console.log(state)
     // set initial thread to the one with the latest message
     setCurrentThread(state, latestMessage.threadID)
   },
