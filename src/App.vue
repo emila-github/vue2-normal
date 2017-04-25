@@ -2,7 +2,7 @@
   <div id="app">
     <slot name="login" v-if="!username">
       login<br/>
-      <button @click="login">login</button>
+      <button @click="login({username: 'wcjttt',password: '123'})">login</button>
     </slot>
     <slot v-if="username">
       <MyTitle id="header"></MyTitle>
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import RouterLinks from './components/RouterLinks'
 import MyTitle from './components/Header'
 import NavMenu from './components/NavMenu'
@@ -33,10 +33,11 @@ export default {
     NavMenu
   },
   methods: {
-    login () {
-      console.log('login')
-      this.$store.commit('setUsername', {username: 'wcj'})
-    }
+    ...mapActions(['login'])
+    // login () {
+    //   console.log('login')
+    //   this.$store.commit('setUsername', {username: 'wcj'})
+    // }
   },
   computed: {
     ...mapGetters(['username'])

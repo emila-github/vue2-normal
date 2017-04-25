@@ -32,7 +32,23 @@ module.exports = {
       '/ty': {
         target: 'http://vr.17173.com/',
         changeOrigin: true
+      },
+      // 添加代理接口 ：http://localhost:8080/login.do -> http://localhost:3001/login.do
+      '/**/*.do': {
+        target: 'http://localhost:3001/',
+        changeOrigin: true,
+        pathRewrite: {
+          // '^/mai/' : '/'
+        }
       }
+      // // 添加代理接口 ：http://localhost:8080/mai/login.do -> http://localhost:3001/login.do
+      // '/mai/': {
+      //   target: 'http://localhost:3001/',
+      //   changeOrigin: true,
+      //   pathRewrite: {
+      //     '^/mai/' : '/'
+      //   }
+      // }
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README

@@ -3,15 +3,17 @@ import Vuex from 'vuex'
 
 import * as types from './mutation-types'
 import moduleA from './moduleA/index'
+import account from './modules/account'
 
 // 告诉 vue “使用” vuex
 Vue.use(Vuex)
 const store = new Vuex.Store({
   modules: {
-    moduleA
+    moduleA,
+    account
   },
   state: {
-    username: sessionStorage.getItem('username') || '',
+    // username: sessionStorage.getItem('username') || '',
     count: 0,
     todos: [
       { id: 1, text: 'ttt1', done: true },
@@ -20,10 +22,10 @@ const store = new Vuex.Store({
     ]
   },
   mutations: {
-    setUsername: (state, {username}) => {
-      state.username = username
-      sessionStorage.setItem('username', username)
-    },
+    // setUsername: (state, {username}) => {
+    //   state.username = username
+    //   sessionStorage.setItem('username', username)
+    // },
     increment: state => state.count++,
     decrement: (state) => {
       console.log('decrement root', state)
@@ -58,7 +60,7 @@ const store = new Vuex.Store({
     }
   },
   getters: {
-    username: state => state.username,
+    // username: state => state.username,
     doneTodos: state => {
       return state.todos.filter(todo => todo.done)
     },
