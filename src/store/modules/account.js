@@ -16,6 +16,8 @@ const actions = {
   login ({commit}, {username, password}) {
     api.login({username, password}, datas => {
       commit('setUsername', {username, password})
+    }, res => {
+      console.log('err', res)
     })
   }
 }

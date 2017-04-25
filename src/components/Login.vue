@@ -22,6 +22,7 @@
     用户名： <input name="username" v-model="username" /><br/>
     密码： <input name="password" v-model="password" /><br/>
     <button @click="login({username: username, password: password})">login</button>
+
   </div>
 </template>
 
