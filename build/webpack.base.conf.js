@@ -22,11 +22,19 @@ module.exports = {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
-      '@': resolve('src')
+      '@': resolve('src'),
+      root: path.join(__dirname, '../src'),
+      components: path.join(__dirname, '../src/components'),
+      scss_vars: path.resolve(__dirname, '../src/styles/vars.scss'), //  get scss vars
+      styles: path.join(__dirname, '../src/styles') // get scss files
     }
   },
   module: {
     rules: [
+      {
+        test: /\.scss$/,
+        loader: 'style!css!sass?sourceMap'
+      },
       {
         test: /\.(js|vue)$/,
         loader: 'eslint-loader',
@@ -55,7 +63,7 @@ module.exports = {
         }
       },
       {
-        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        test: /\.(ico|jpg|png|gif|eot|otf|webp|ttf|woff|woff2)(\?.*)?$/,
         loader: 'url-loader',
         options: {
           limit: 10000,
