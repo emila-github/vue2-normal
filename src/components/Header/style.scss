@@ -25,7 +25,14 @@ header {
         transform: translate3d(0, 0, 0)!important;
         width: 100%;
     }
-
+    .md-icon{
+      background: url("../../assets/menu.png") center center no-repeat;
+      width: 24px;
+      height: 24px;
+      background-size: 24px;
+      text-indent: -999px;
+      display: block;
+    }
     .header-navicon {
         display: flex;
         align-items: center;

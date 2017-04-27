@@ -1,16 +1,15 @@
 <template>
-  <div class="login">
-    <img src="../assets/logo.png">
+  <div class="test">
     <h1>{{ msg }}</h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Login',
+  name: 'Test',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'test'
     }
   }
 }
