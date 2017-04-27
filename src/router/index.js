@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import routerConfig from './config'
 import LoginView from '../components/Login'
 import NotFoundView from '../components/404.vue'
 import DashView from '../components/Dash/'
 import HelloView from '../components/views/Hello'
-import TestView from '../components/views/Test'
+// import TestView from '../components/views/Test'
 Vue.use(Router)
 
 export default new Router({
@@ -24,10 +25,11 @@ export default new Router({
         {
           path: 'test',
           alias: '',
-          component: TestView,
+          component: require(`../components/views/ex01-component-recursive/`),
           name: 'test',
           meta: {title: 'test', description: 'test'}
-        }
+        },
+        ...routerConfig
       ]
     },
     {
