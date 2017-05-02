@@ -13,8 +13,12 @@ const formatMenu = (menus = []) => {
   })
   // 添加子类菜单到父类菜单中
   for (let i = 0, len = ms.length; i < len; i++) {
-    let item = ms[i]
-    if (item && item.meta && item.meta.pid) {
+    let item = ms[i] || {}
+    if (!item.meta) {
+      item.meta = {}
+    }
+    item.meta.url = `/${item.path}`
+    if (item.meta.pid) {
       let parent = _.find(ms, {meta: {id: item.meta.pid}})
       if (parent) { // 父级存在添加到父级
         if (!isArray(parent._submenu || !parent._submenu)) {

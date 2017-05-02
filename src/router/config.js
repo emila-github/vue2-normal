@@ -1,6 +1,6 @@
 const routes = [
   {
-    path: '/m1/m1-1',
+    path: 'm1/m1-1',
     alias: '',
     component: resolve => {
       require.ensure([], () => {
@@ -11,7 +11,7 @@ const routes = [
     meta: {title: 'm1-1', description: 'm1-1', id: '0101', pid: '01'}
   },
   {
-    path: '/m1/m1-1/m1-1-2',
+    path: 'm1/m1-1/m1-1-2',
     alias: '',
     component: require(`../components/views/m1-1-2`),
     name: 'm1-1-2',
@@ -19,7 +19,7 @@ const routes = [
     children: []
   },
   {
-    path: '/m1/m1-1/m1-1-1',
+    path: 'm1/m1-1/m1-1-1',
     alias: '',
     component: require(`../components/views/m1-1-1`),
     name: 'm1-1-1',
@@ -27,7 +27,7 @@ const routes = [
     children: []
   },
   {
-    path: '/m1/m1-2',
+    path: 'm1/m1-2',
     alias: '',
     component: require(`../components/views/m1-2`),
     name: 'm1-2',
@@ -35,14 +35,14 @@ const routes = [
     children: []
   },
   {
-    path: '/m1',
+    path: 'm1',
     alias: '',
     component: require(`../components/views/m1`),
     name: 'm1',
     meta: {title: 'm1', description: 'm1', id: '01'}
   },
   {
-    path: '/m2',
+    path: 'm2',
     alias: '',
     component: require(`../components/views/m2`),
     name: 'm2',
@@ -50,7 +50,7 @@ const routes = [
     children: []
   },
   {
-    path: '/m3',
+    path: 'm3',
     alias: '',
     component: require(`../components/views/Test`),
     name: 'm3',
