@@ -1,5 +1,6 @@
 <template>
   <div class="test">
+  	<div slot="breadcrumb"> 111</div>
     <h1>{{ msg }}</h1>
   </div>
 </template>

@@ -1,5 +1,7 @@
 export default {
-  menuTree: null, // 菜单树
+  menuOrigin: [], // 路由源
+  menuTree: [], // 菜单树
+  currentBreadcrumbKeypath: [], // 当前选择的路径keypath数组
   callingAPI: false,
   searching: '',
   serverURI: 'http://10.110.1.136:8080',

@@ -1,6 +1,6 @@
 <template>
   <div id="sidebar" :class="{'open': active}">
-    <el-menu theme="light" router>
+    <el-menu theme="light" router @select="handleSelect">
       <Logo></Logo>
       <!--<div class="logo-container">-->
         <!--<img class="logo" src="https://vuejs.org/images/logo.png" />-->
@@ -52,7 +52,10 @@
       })
     },
     methods: {
-
+      handleSelect (key, keyPath) {
+        console.log(key, keyPath)
+        this.$store.commit('setCurrentBreadcrumbKeypath', {keyPath})
+      }
     },
     mounted () { // ready
       this.$store.dispatch('getAllMenu')

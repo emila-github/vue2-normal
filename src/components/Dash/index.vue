@@ -7,6 +7,9 @@
             <main>
             <div class="main-content">
                 <el-row class="container">
+
+                      <Breadcrumb></Breadcrumb>
+
                     <router-view></router-view>
                 </el-row>
             </div>
@@ -17,42 +20,44 @@
 </div>
 </template>
 <script>
-import Header from '../Header'
-import Sidebar from '../Sidebar'
-import Dimmer from '../Dimmer'
-export default {
-  name: 'App',
-  data () {
-    return {
-      activeSidebar: window.innerWidth > 1024,
-      activeDimmer: false
-    }
-  },
-  methods: {
-    openSidebar () {
-      this.activeSidebar = true
-      this.activeDimmer = true
+  import Header from '../Header'
+  import Sidebar from '../Sidebar'
+  import Dimmer from '../Dimmer'
+  import Breadcrumb from '../Breadcrumb/'
+  export default {
+    name: 'App',
+    data () {
+      return {
+        activeSidebar: window.innerWidth > 1024,
+        activeDimmer: false
+      }
     },
-    closeDimmer () {
-      this.activeDimmer = false
-      this.activeSidebar = false
+    methods: {
+      openSidebar () {
+        this.activeSidebar = true
+        this.activeDimmer = true
+      },
+      closeDimmer () {
+        this.activeDimmer = false
+        this.activeSidebar = false
+      },
+      handleResize () {
+        let {
+          innerWidth
+        } = window
+        this.activeSidebar = (innerWidth > 1024)
+      }
     },
-    handleResize () {
-      let {
-        innerWidth
-      } = window
-      this.activeSidebar = (innerWidth > 1024)
+    components: {
+      'header-component': Header,
+      'sidebar-component': Sidebar,
+      Breadcrumb,
+      Dimmer
+    },
+    created: function () {
+      window.addEventListener('resize', this.handleResize)
     }
-  },
-  components: {
-    'header-component': Header,
-    'sidebar-component': Sidebar,
-    Dimmer
-  },
-  created: function () {
-    window.addEventListener('resize', this.handleResize)
   }
-}
 </script>
 
 <style lang="scss">

@@ -4,7 +4,7 @@
     <el-submenu v-if="hasChildren" :index="model.meta.url">
       <template slot="title">{{model.name}}</template>
       <el-menu-item v-if="model._submenu" :index="model.meta.url">{{model.name}}({{model.path}})</el-menu-item>
-      <items v-for='cel in model._submenu' :key="model.path" :model='cel'></items>
+      <items v-for='cel in model._submenu' :key="model.meta.url" :model='cel'></items>
     </el-submenu>
   </div>
 </template>
