@@ -24,7 +24,7 @@ export default {
   methods: {
     handleSelect (key, keyPath) {
       console.log(key, keyPath)
-      this.$router.push({path: '/logout'})
+      // this.$router.push({path: '/logout'})
     },
     handleResize () {
       if (window.innerWidth > 480) {

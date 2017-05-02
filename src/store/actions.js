@@ -1,23 +1,49 @@
 import * as types from './mutation-types'
 import menuConfig from '../router/config'
+import _ from 'lodash'
 
-const formatMenu = (menus = [], parentMenu = {}) => {
-  menus.forEach(menu => {
-    menu.meta.urls = []
-    if (parentMenu && parentMenu.meta && parentMenu.meta.urls) {
-      menu.meta.urls = [...parentMenu.meta.urls] // 保存所有父级路由
-    }
-    menu.meta.urls.push(menu.path)
-    menu.meta.uri = '/' + menu.meta.urls.join('/') // 拼接菜单跳转地址
-    if (menu.children && menu.children.length) {
-      formatMenu(menu.children, menu)
-    }
+var isArray = function (obj) {
+  return Object.prototype.toString.call(obj) === '[object Array]'
+}
+const formatMenu = (menus = []) => {
+  let ms = [...menus]
+  // 根据id降序排列
+  ms = _.sortBy(ms, item => {
+    return -item.meta.id
   })
-  return menus
+  // 添加子类菜单到父类菜单中
+  for (let i = 0, len = ms.length; i < len; i++) {
+    let item = ms[i]
+    if (item && item.meta && item.meta.pid) {
+      let parent = _.find(ms, {meta: {id: item.meta.pid}})
+      if (parent) { // 父级存在添加到父级
+        if (!isArray(parent._submenu || !parent._submenu)) {
+          parent._submenu = []
+        }
+        parent._submenu.push(item)
+        // 根据id升序排列
+        parent._submenu = _.sortBy(parent._submenu, childrenItem => {
+          return childrenItem.meta.id
+        })
+        ms.splice(i, 1)
+        len = ms.length
+        i--
+      } else { // 父级不存在 说明数据出错， 直接删除子集
+        ms.splice(i, 1)
+        len = ms.length
+        i--
+      }
+    }
+  }
+  ms = _.sortBy(ms, item => {
+    return item.meta.id
+  })
+  return ms
 }
 export default {
   getAllMenu ({commit}) {
     const allMenu = formatMenu(menuConfig)
+    // console.log(allMenu)
     commit(types.MENU_TREE, {
       menu: allMenu
     })
