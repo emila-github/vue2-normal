@@ -36,9 +36,9 @@
     },
     methods: {
       submitForm (formName) {
-        console.log('formName', formName)
+        // console.log('formName', formName)
         this.$refs[formName].validate((valid) => {
-          console.log('valid', valid)
+          // console.log('valid', valid)
           if (valid) {
             // alert('submit!')
             // const {password: pass, username: user} = this.ruleForm2
@@ -48,7 +48,7 @@
             // }
             // this.signin({username, password, cb})
             this.signin({username, password}).then((datas) => {
-              console.log('do 2', datas)
+              // console.log('do 2', datas)
               this.$router.push({path: '/'})
             },
             () => {})

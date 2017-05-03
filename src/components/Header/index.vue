@@ -11,20 +11,27 @@
 
       <el-submenu class="header-menu" index="2">
         <template slot="title">我的工作台({{username}})</template>
-        <el-menu-item index="logout">登出</el-menu-item>
+        <el-menu-item index="" @click.native="signout">登出</el-menu-item>
       </el-submenu>
     </el-menu>
   </header>
 </template>
 
 <script>
+  // import { mapGetters, mapActions } from 'vuex'
   import { mapGetters } from 'vuex'
   export default {
     name: 'Header',
     props: ['openSidebar', 'sidebarOpened'],
     methods: {
+      // ...mapActions(['signout']),
+      signout () {
+        this.$store.dispatch('signout').then(() => {
+          this.$router.push('/login')
+        })
+      },
       handleSelect (key, keyPath) {
-        console.log(key, keyPath)
+        // console.log(key, keyPath)
         // this.$router.push({path: '/logout'})
       },
       handleResize () {

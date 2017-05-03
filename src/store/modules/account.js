@@ -6,7 +6,7 @@ const state = {
 }
 const mutations = {
   setUsername: (state, {username}) => {
-    console.log('do setUsername')
+    // console.log('do setUsername')
     state.username = username
     sessionStorage.setItem('username', username)
   }
@@ -17,10 +17,17 @@ const getters = {
 const actions = {
   signin ({commit}, {username, password}) {
     return api.login({username, password}).then((datas) => {
-      console.log('do 1', datas)
+      // console.log('do 1 datas=undefined', datas)
       commit('setUsername', {username})
     })
+  },
+  signout ({commit}) {
+    // console.log('signout')
+    return api.logout().then((datas) => {
+      commit('setUsername', {username: ''})
+    })
   }
+
 }
 export default {
   state,

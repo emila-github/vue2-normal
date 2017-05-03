@@ -8,3 +8,7 @@ export function login ({username, password}) {
   }
   return request('post', urls.LOGIN, params)
 }
+// 登出
+export function logout () {
+  return request('post', urls.LOGOUT)
+}
