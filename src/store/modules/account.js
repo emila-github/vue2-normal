@@ -1,4 +1,6 @@
-import * as api from '../api'
+import * as api from '../../api/'
+// import Vue from 'vue'
+// import { Notification } from 'element-ui'
 const state = {
   username: sessionStorage.getItem('username') || ''
 }
@@ -13,11 +15,10 @@ const getters = {
   username: state => state.username
 }
 const actions = {
-  login ({commit}, {username, password}) {
-    api.login({username, password}, datas => {
-      commit('setUsername', {username, password})
-    }, res => {
-      console.log('err', res)
+  signin ({commit}, {username, password}) {
+    return api.login({username, password}).then(() => {
+      console.log('do 1')
+      commit('setUsername', {username})
     })
   }
 }

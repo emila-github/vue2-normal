@@ -29,9 +29,7 @@
           user: [
             { validator: checkUser, trigger: 'blur' }
           ]
-        },
-        username: null,
-        password: null
+        }
       }
     },
     computed: {
@@ -45,8 +43,15 @@
             // alert('submit!')
             // const {password: pass, username: user} = this.ruleForm2
             const {pass: password, user: username} = this.ruleForm2
-            this.login({username, password})
-            this.$router.push({path: '/'})
+            // const cb = () => {
+            //   this.$router.push({path: '/'})
+            // }
+            // this.signin({username, password, cb})
+            this.signin({username, password}).then((datas) => {
+              console.log('do 2', datas)
+              this.$router.push({path: '/'})
+            },
+            () => {})
           } else {
             console.log('error submit!!')
             return false
@@ -56,18 +61,13 @@
       resetForm (formName) {
         this.$refs[formName].resetFields()
       },
-      ...mapActions(['login'])
+      ...mapActions(['signin'])
     }
   }
 </script>
 
 <template>
   <div>
-    login<br/>
-    用户名： <input name="username" v-model="username" /><br/>
-    密码： <input name="password" v-model="password" /><br/>
-    <button @click="login({username: username, password: password})">login</button>
-
     <div class="login-box">
       <el-form :model="ruleForm2" :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm">
         <el-form-item label="用户名" prop="user">
@@ -82,8 +82,6 @@
         </el-form-item>
       </el-form>
     </div>
-
-
   </div>
 </template>
 <style scoped>

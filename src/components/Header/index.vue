@@ -10,7 +10,7 @@
       <span v-if="showPageTitle" class="header-title">{{pageTitle}}</span>
 
       <el-submenu class="header-menu" index="2">
-        <template slot="title">我的工作台</template>
+        <template slot="title">我的工作台({{username}})</template>
         <el-menu-item index="logout">登出</el-menu-item>
       </el-submenu>
     </el-menu>
@@ -18,36 +18,40 @@
 </template>
 
 <script>
-export default {
-  name: 'Header',
-  props: ['openSidebar', 'sidebarOpened'],
-  methods: {
-    handleSelect (key, keyPath) {
-      console.log(key, keyPath)
-      // this.$router.push({path: '/logout'})
-    },
-    handleResize () {
-      if (window.innerWidth > 480) {
-        this.showPageTitle = true
-      } else {
-        this.showPageTitle = false
+  import { mapGetters } from 'vuex'
+  export default {
+    name: 'Header',
+    props: ['openSidebar', 'sidebarOpened'],
+    methods: {
+      handleSelect (key, keyPath) {
+        console.log(key, keyPath)
+        // this.$router.push({path: '/logout'})
+      },
+      handleResize () {
+        if (window.innerWidth > 480) {
+          this.showPageTitle = true
+        } else {
+          this.showPageTitle = false
+        }
       }
+    },
+    data () {
+      return {
+        showPageTitle: window.innerWidth > 480
+      }
+    },
+    computed: {
+      ...mapGetters({
+        username: 'username'
+      }),
+      pageTitle () {
+        return this.$route.meta.title || 'Title'
+      }
+    },
+    created () {
+      window.addEventListener('resize', this.handleResize)
     }
-  },
-  data () {
-    return {
-      showPageTitle: window.innerWidth > 480
-    }
-  },
-  computed: {
-    pageTitle () {
-      return this.$route.meta.title || 'Title'
-    }
-  },
-  created () {
-    window.addEventListener('resize', this.handleResize)
   }
-}
 </script>
 
 <style lang="scss">
