@@ -7,7 +7,8 @@ var isArray = function (obj) {
 }
 // 格式化menu路由，格式化为左侧菜单父子关系格式
 const formatMenu = (menus = []) => {
-  let ms = [...menus]
+  // let ms = [...menus]
+  let ms = _.cloneDeep(menus)
   // 根据id降序排列
   ms = _.sortBy(ms, item => {
     return -item.meta.id
@@ -47,7 +48,9 @@ const formatMenu = (menus = []) => {
 }
 export default {
   getAllMenu ({commit}) {
+    console.log('getAllMenu menuConfig=', menuConfig)
     const allMenu = formatMenu(menuConfig)
+    console.log('getAllMenu allMenu=', allMenu)
     commit(types.MENU_ORIGIN, {
       menu: menuConfig
     })

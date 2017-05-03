@@ -1,9 +1,9 @@
 <template>
   <div>
-    <el-menu-item v-if="!hasChildren" :index="model.meta.url">{{model.name}}({{model.meta.url}})</el-menu-item>
+    <el-menu-item v-if="!hasChildren" :index="model.meta.url">{{model.name}}</el-menu-item>
     <el-submenu v-if="hasChildren" :index="model.meta.url">
       <template slot="title">{{model.name}}</template>
-      <el-menu-item v-if="model._submenu" :index="model.meta.url">{{model.name}}({{model.path}})</el-menu-item>
+      <el-menu-item v-if="model._submenu" :index="model.meta.url">{{model.name}}</el-menu-item>
       <items v-for='cel in model._submenu' :key="model.meta.url" :model='cel'></items>
     </el-submenu>
   </div>

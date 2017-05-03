@@ -9,10 +9,10 @@
 
 <script>
   export default {
-    name: 'm1',
+    name: 'vue-ex',
     data () {
       return {
-        msg: 'm1'
+        msg: 'vue-ex'
       }
     },
     components: {

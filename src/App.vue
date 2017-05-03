@@ -6,7 +6,13 @@
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  watch: {
+    // '$route' (val, oldVal) {
+    //   console.log('new: ', val)
+    //   console.log('old: ', oldVal)
+    // }
+  }
 }
 </script>
 

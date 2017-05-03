@@ -5,8 +5,8 @@
       <!--<div class="logo-container">-->
         <!--<img class="logo" src="https://vuejs.org/images/logo.png" />-->
       <!--</div>-->
-      <el-menu-item index="/hello">Hello</el-menu-item>
-      <el-menu-item index="/test">Test</el-menu-item>
+<!--       <el-menu-item index="/hello">Hello</el-menu-item>
+      <el-menu-item index="/test">Test</el-menu-item> -->
       <Submenu v-for="item in submenu" :key="item.path" :model="item"></Submenu>
       <!--<el-menu-item index="/">Dashboard</el-menu-item>-->
       <!--<el-submenu index="m1">-->
@@ -59,7 +59,7 @@
     },
     mounted () { // ready
       this.$store.dispatch('getAllMenu')
-      console.log(this.$store.menuTree)
+      // console.log(this.$store.menuTree)
     }
   }
 </script>

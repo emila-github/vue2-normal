@@ -4,7 +4,7 @@ import routerConfig from './config'
 import LoginView from '../components/Login'
 import NotFoundView from '../components/404.vue'
 import DashView from '../components/Dash/'
-import HelloView from '../components/views/Hello'
+// import HelloView from '../components/views/Hello'
 // import TestView from '../components/views/Test'
 Vue.use(Router)
 
@@ -15,20 +15,20 @@ export default new Router({
       path: '/',
       component: DashView,
       children: [
-        {
-          path: 'hello',
-          alias: '',
-          component: HelloView,
-          name: 'hello',
-          meta: {title: 'hello', description: 'hello'}
-        },
-        {
-          path: 'test',
-          alias: '',
-          component: require(`../components/views/ex01-component-recursive/`),
-          name: 'test',
-          meta: {title: 'test', description: 'test'}
-        },
+        // {
+        //   path: 'hello',
+        //   alias: '',
+        //   component: HelloView,
+        //   name: 'hello',
+        //   meta: {title: 'hello', description: 'hello'}
+        // },
+        // {
+        //   path: 'test',
+        //   alias: '',
+        //   component: require(`../components/views/ex01-component-recursive/`),
+        //   name: 'test',
+        //   meta: {title: 'test', description: 'test'}
+        // },
         ...routerConfig
       ]
     },

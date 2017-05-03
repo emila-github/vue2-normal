@@ -1,6 +1,6 @@
 <template>
   <header>
-    <el-menu theme="dark" mode="horizontal" @select="handleSelect">
+    <el-menu theme="dark" mode="horizontal" @select="handleSelect" router>
       <el-menu-item class="header-navicon" index="1">
         <el-button type="text" @click="openSidebar">
           <!--<i class="el-icon-menu"></i>-->
@@ -36,8 +36,12 @@ export default {
   },
   data () {
     return {
-      showPageTitle: window.innerWidth > 480,
-      pageTitle: this.$route.meta.title || 'Title'
+      showPageTitle: window.innerWidth > 480
+    }
+  },
+  computed: {
+    pageTitle () {
+      return this.$route.meta.title || 'Title'
     }
   },
   created () {
