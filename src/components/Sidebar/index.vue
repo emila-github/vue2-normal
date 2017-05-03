@@ -1,6 +1,6 @@
 <template>
   <div id="sidebar" :class="{'open': active}">
-    <el-menu theme="light" router @select="handleSelect" :default-active="activeIndex">
+    <el-menu theme="light" router @select="handleSelect" :default-active="activeIndex" :default-openeds="defaultOpeneds" :unique-opened="true">
       <Logo></Logo>
       <!--<div class="logo-container">-->
         <!--<img class="logo" src="https://vuejs.org/images/logo.png" />-->
@@ -53,11 +53,16 @@
       // 标记左侧菜单选中状态
       activeIndex () {
         return this.$route.path
+      },
+      // 设置左侧菜单展开项
+      defaultOpeneds () {
+        console.log('defaultOpeneds=', this.$store.state.currentBreadcrumbKeypath)
+        return this.$store.state.currentBreadcrumbKeypath
       }
     },
     methods: {
       handleSelect (key, keyPath) {
-        console.log(key, keyPath)
+        console.log('handleSelect=', key, keyPath)
         this.$store.commit('setCurrentBreadcrumbKeypath', {keyPath})
       }
     },

@@ -96,6 +96,39 @@ const routes = [
     },
     name: '递归组件',
     meta: {title: '递归组件', description: '递归组件递归示例', id: '0102', pid: '01'}
+  },
+  {
+    path: 'vuex-ex/m1',
+    alias: '',
+    component: resolve => {
+      require.ensure([], () => {
+        resolve(require('../components/views/m1'))
+      })
+    },
+    name: 'vuex-ex/m1',
+    meta: {title: 'vuex示例', description: 'vuex示例', id: '0201', pid: '02'}
+  },
+  {
+    path: 'vuex-ex/m1/m1-1',
+    alias: '',
+    component: resolve => {
+      require.ensure([], () => {
+        resolve(require('../components/views/m1-1'))
+      })
+    },
+    name: 'vuex-ex/m1/m1-1',
+    meta: {title: 'vuex示例', description: 'vuex示例', id: '020101', pid: '0201'}
+  },
+  {
+    path: 'vuex-ex/m2',
+    alias: '',
+    component: resolve => {
+      require.ensure([], () => {
+        resolve(require('../components/views/m2'))
+      })
+    },
+    name: 'vuex-ex/m2',
+    meta: {title: 'vuex示例', description: 'vuex示例', id: '0202', pid: '02'}
   }
 ]
 

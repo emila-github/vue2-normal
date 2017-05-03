@@ -5,15 +5,21 @@
 </template>
 
 <script>
-export default {
-  name: 'app',
-  watch: {
-    // '$route' (val, oldVal) {
-    //   console.log('new: ', val)
-    //   console.log('old: ', oldVal)
-    // }
+  // import { mapMutations } from 'vuex'
+  export default {
+    name: 'app',
+    watch: {
+      '$route' (val, oldVal) {
+        // console.log('new: ', val)
+        // console.log('old: ', oldVal)
+        // 监听路由变化 修改keypath
+        let path = val.path
+        this.$store.commit('routeSetCurrentBreadcrumbKeypath', {
+          routePath: path
+        })
+      }
+    }
   }
-}
 </script>
 
 <style>
