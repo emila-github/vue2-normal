@@ -1,6 +1,6 @@
 <template>
   <div id="sidebar" :class="{'open': active}">
-    <el-menu theme="light" router @select="handleSelect">
+    <el-menu theme="light" router @select="handleSelect" :default-active="activeIndex">
       <Logo></Logo>
       <!--<div class="logo-container">-->
         <!--<img class="logo" src="https://vuejs.org/images/logo.png" />-->
@@ -49,7 +49,11 @@
     computed: {
       ...mapState({
         submenu: 'menuTree'
-      })
+      }),
+      // 标记左侧菜单选中状态
+      activeIndex () {
+        return this.$route.path
+      }
     },
     methods: {
       handleSelect (key, keyPath) {

@@ -69,7 +69,7 @@ const routes = [
     alias: '',
     component: resolve => {
       require.ensure([], () => {
-        resolve(require('../components/views/m2'))
+        resolve(require('../components/views/vuex-ex'))
       })
     },
     name: 'vuex-ex',
