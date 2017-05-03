@@ -1,4 +1,4 @@
-import * as api from '../../api/'
+import * as api from '../../api/index'
 // import Vue from 'vue'
 // import { Notification } from 'element-ui'
 const state = {

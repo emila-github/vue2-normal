@@ -1,4 +1,4 @@
-import base from './base'
+import {request} from './base'
 import * as urls from './map-urls'
 // 登录
 export function login ({username, password}) {
@@ -6,5 +6,5 @@ export function login ({username, password}) {
     username,
     password
   }
-  return base.request('post', urls.LOGIN, params)
+  return request('post', urls.LOGIN, params)
 }
