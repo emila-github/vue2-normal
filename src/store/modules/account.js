@@ -16,8 +16,8 @@ const getters = {
 }
 const actions = {
   signin ({commit}, {username, password}) {
-    return api.login({username, password}).then(() => {
-      console.log('do 1')
+    return api.login({username, password}).then((datas) => {
+      console.log('do 1', datas)
       commit('setUsername', {username})
     })
   }
