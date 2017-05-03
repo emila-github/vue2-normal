@@ -13,7 +13,6 @@ export default {
   // 设置当前面包屑全路径信息
   setCurrentBreadcrumbKeypath (state, {keyPath}) {
     state.currentBreadcrumbKeypath = _.uniq(keyPath)
-    console.log('setCurrentBreadcrumbKeypath=', state)
   },
   // 通过路由路径设置当前面包屑全路径信息
   routeSetCurrentBreadcrumbKeypath (state, {routePath}) {

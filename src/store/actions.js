@@ -48,9 +48,9 @@ const formatMenu = (menus = []) => {
 }
 export default {
   getAllMenu ({commit}) {
-    console.log('getAllMenu menuConfig=', menuConfig)
+    // console.log('getAllMenu menuConfig=', menuConfig)
     const allMenu = formatMenu(menuConfig)
-    console.log('getAllMenu allMenu=', allMenu)
+    // console.log('getAllMenu allMenu=', allMenu)
     commit(types.MENU_ORIGIN, {
       menu: menuConfig
     })

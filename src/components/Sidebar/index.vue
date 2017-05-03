@@ -56,13 +56,11 @@
       },
       // 设置左侧菜单展开项
       defaultOpeneds () {
-        console.log('defaultOpeneds=', this.$store.state.currentBreadcrumbKeypath)
         return this.$store.state.currentBreadcrumbKeypath
       }
     },
     methods: {
       handleSelect (key, keyPath) {
-        console.log('handleSelect=', key, keyPath)
         this.$store.commit('setCurrentBreadcrumbKeypath', {keyPath})
       }
     },
