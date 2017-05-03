@@ -12,7 +12,7 @@ export default {
       })
       current && breadcrumb.push({
         name: current.name,
-        url: current.meta.url
+        url: '/' + current.path
       })
     }
     return breadcrumb

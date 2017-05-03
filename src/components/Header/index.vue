@@ -2,7 +2,7 @@
   <header>
     <el-menu theme="dark" mode="horizontal" @select="handleSelect" router>
       <el-menu-item class="header-navicon" index="1">
-        <el-button type="text" @click="openSidebar">
+        <el-button type="text" @click.stop="openSidebar">
           <!--<i class="el-icon-menu"></i>-->
           <i class="md-icon">menu</i>
         </el-button>

@@ -28,8 +28,10 @@
     },
     components: {
     },
-    created: function () {
-      // console.log('menuOrigin=', this.menuOrigin)
+    created () {
+    },
+    mounted () {
+      // console.log('mounted=', this.getCurrentBreadcrumb)
     }
   }
 </script>
