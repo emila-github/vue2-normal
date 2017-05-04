@@ -47,8 +47,6 @@ const router = new Router({
   ]
 })
 router.beforeEach((to, from, next) => {
-  console.log('username=', store.state.account.username)
-  console.log('router.beforeEach=', to, from, next)
   if (to.meta.withoutAuth) {
     next()
   } else if (!store.state.account.username) {
@@ -60,18 +58,5 @@ router.beforeEach((to, from, next) => {
     next()
   }
 })
-// router.beforeEach((to, from, next) => {
-//   console.log('username', this.$store.state.account.username)
-//   if (to.matched.some(record => record.meta.withoutAuth)) {
-//     next()
-//   } else if (!this.$store.state.account.username) {
-//     next({
-//       path: '/login',
-//       query: { redirect: to.fullPath }
-//     })
-//   } else {
-//     next()
-//   }
-// })
 
 export default router
