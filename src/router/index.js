@@ -6,9 +6,10 @@ import NotFoundView from '../components/404.vue'
 import DashView from '../components/Dash/'
 // import HelloView from '../components/views/Hello'
 // import TestView from '../components/views/Test'
+import store from '../store/index'
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   routes: [
     {
@@ -35,7 +36,8 @@ export default new Router({
     {
       path: '/login',
       name: 'Login',
-      component: LoginView
+      component: LoginView,
+      meta: {withoutAuth: true}
     },
     {
       // not found handler
@@ -44,3 +46,32 @@ export default new Router({
     }
   ]
 })
+router.beforeEach((to, from, next) => {
+  console.log('username=', store.state.account.username)
+  console.log('router.beforeEach=', to, from, next)
+  if (to.meta.withoutAuth) {
+    next()
+  } else if (!store.state.account.username) {
+    next({
+      path: '/login',
+      query: { redirect: to.fullPath }
+    })
+  } else {
+    next()
+  }
+})
+// router.beforeEach((to, from, next) => {
+//   console.log('username', this.$store.state.account.username)
+//   if (to.matched.some(record => record.meta.withoutAuth)) {
+//     next()
+//   } else if (!this.$store.state.account.username) {
+//     next({
+//       path: '/login',
+//       query: { redirect: to.fullPath }
+//     })
+//   } else {
+//     next()
+//   }
+// })
+
+export default router
