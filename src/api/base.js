@@ -12,6 +12,11 @@ export function request (method, uri, params = null) {
     console.error('API function call requires uri argument')
     return
   }
+
+  if (!apiRoot) {
+    console.error('API ROOT config error')
+    return
+  }
   let url = apiRoot + uri
   return new Promise((resolve, reject) => {
     return Vue.http[method](url, params).then(res => {
