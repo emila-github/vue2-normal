@@ -1,4 +1,5 @@
 <script>
+  import _ from 'lodash'
   import { mapActions } from 'vuex'
   export default {
     name: 'Login',
@@ -31,6 +32,15 @@
             { validator: checkUser, trigger: 'blur' }
           ]
         }
+        // // 验证的简单方法
+        // rules2: {
+        //   user: [
+        //     { required: true, message: '请输入用户名', trigger: 'blur' }
+        //   ],
+        //   pass: [
+        //     { required: true, message: '请输入密码', trigger: 'change' }
+        //   ]
+        // }
       }
     },
     computed: {
@@ -48,7 +58,16 @@
               this.$router.push({path: '/'})
             },
             (res) => {
-              console.log(res)
+              // 弹窗内错误提示
+              console.log(res, this.$refs[formName])
+              const msg = res.data.messages.join(' ')
+              if (_.startsWith(msg, '账号')) {
+                this.$refs[formName].fields[0].valid = false
+                this.$refs[formName].fields[0].error = msg
+              } else {
+                this.$refs[formName].fields[1].valid = false
+                this.$refs[formName].fields[1].error = msg
+              }
             })
           } else {
             console.log('error submit!!')
@@ -71,11 +90,11 @@
     
     <el-dialog title="登录" v-model="dialogFormVisible" :modal-append-to-body="false" :close-on-click-modal="false" size="tiny" :show-close="false">
       <el-form :model="ruleForm2" :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm">
-        <el-form-item label="用户名" prop="user">
+        <el-form-item label="用户名" prop="user" placeholder="用户名">
           <el-input v-model="ruleForm2.user"></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="pass">
-          <el-input type="password" v-model="ruleForm2.pass" auto-complete="off"></el-input>
+          <el-input type="password" v-model="ruleForm2.pass" placeholder="密码" @keyup.native.enter="submitForm('ruleForm2')"></el-input>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
