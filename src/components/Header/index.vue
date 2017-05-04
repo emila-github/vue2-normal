@@ -1,7 +1,7 @@
 <template>
   <header>
     <el-menu theme="dark" mode="horizontal" @select="handleSelect" router>
-      <el-menu-item class="header-navicon" index="1">
+      <el-menu-item class="header-navicon" index="">
         <el-button type="text" @click.stop="openSidebar">
           <!--<i class="el-icon-menu"></i>-->
           <i class="md-icon">menu</i>
@@ -9,7 +9,7 @@
       </el-menu-item>
       <span v-if="showPageTitle" class="header-title">{{pageTitle}}</span>
 
-      <el-submenu class="header-menu" index="2">
+      <el-submenu class="header-menu" index="">
         <template slot="title">我的工作台({{username}})</template>
         <el-menu-item index="" @click.native="signout">登出</el-menu-item>
       </el-submenu>
@@ -62,7 +62,7 @@
 </script>
 
 <style lang="scss">
-// You can import all your SCSS variables using webpack alias
-@import '~scss_vars';
-@import './style.scss';
+  // You can import all your SCSS variables using webpack alias
+  @import '~scss_vars';
+  @import './style.scss';
 </style>

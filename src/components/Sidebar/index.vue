@@ -2,6 +2,10 @@
   <div id="sidebar" :class="{'open': active}">
     <el-menu theme="light" router @select="handleSelect" :default-active="activeIndex" :default-openeds="defaultOpeneds" :unique-opened="true">
       <Logo></Logo>
+      <el-button type="text" class="close-sidebar" @click="closeDimmer">
+        <!--<i class="el-icon-menu"></i>-->
+        <i class="md-icon">menu</i>
+      </el-button>
       <!--<div class="logo-container">-->
         <!--<img class="logo" src="https://vuejs.org/images/logo.png" />-->
       <!--</div>-->
@@ -36,7 +40,7 @@
   import Submenu from './submenu'
   export default {
     name: 'Sidebar',
-    props: ['active'],
+    props: ['active', 'closeDimmer'],
     components: {
       Logo,
       Submenu

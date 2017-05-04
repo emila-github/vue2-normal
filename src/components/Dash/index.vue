@@ -1,6 +1,6 @@
 <template>
   <div class="page-layout">
-      <sidebar-component :active="activeSidebar" />
+      <sidebar-component :active="activeSidebar" :closeDimmer="closeDimmer"/>
       <div class="page-layout-inner">
           <header-component :sidebarOpened="activeSidebar" :openSidebar="openSidebar" />
           <main>
