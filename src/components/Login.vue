@@ -42,17 +42,14 @@
           // console.log('valid', valid)
           if (valid) {
             // alert('submit!')
-            // const {password: pass, username: user} = this.ruleForm2
             const {pass: password, user: username} = this.ruleForm2
-            // const cb = () => {
-            //   this.$router.push({path: '/'})
-            // }
-            // this.signin({username, password, cb})
             this.signin({username, password}).then((datas) => {
               // console.log('do 2', datas)
               this.$router.push({path: '/'})
             },
-            () => {})
+            (res) => {
+              console.log(res)
+            })
           } else {
             console.log('error submit!!')
             return false
@@ -72,7 +69,7 @@
 
     <el-button type="primary" :size="full" v-if="!dialogFormVisible" @click="dialogFormVisible = true">登录</el-button>
     
-    <el-dialog title="登录" v-model="dialogFormVisible" :modal-append-to-body="false" :close-on-click-modal="false" size="small" :show-close="false">
+    <el-dialog title="登录" v-model="dialogFormVisible" :modal-append-to-body="false" :close-on-click-modal="false" size="tiny" :show-close="false">
       <el-form :model="ruleForm2" :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm">
         <el-form-item label="用户名" prop="user">
           <el-input v-model="ruleForm2.user"></el-input>

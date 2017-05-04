@@ -3,7 +3,7 @@ import * as urls from './map-urls'
 // 登录
 export function login ({username, password}) {
   const params = {
-    username,
+    userName: username,
     password
   }
   return request('post', urls.LOGIN, params)
