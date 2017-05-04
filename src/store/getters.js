@@ -11,7 +11,7 @@ export default {
         return '/' + mo.path === item
       })
       current && breadcrumb.push({
-        name: current.name,
+        name: current.meta.title,
         url: '/' + current.path
       })
     }
