@@ -1,23 +1,19 @@
 <template>
-<div id="app">
-    <div class="page-layout">
-        <sidebar-component :active="activeSidebar" />
-        <div class="page-layout-inner">
-            <header-component :sidebarOpened="activeSidebar" :openSidebar="openSidebar" />
-            <main>
+  <div class="page-layout">
+      <sidebar-component :active="activeSidebar" />
+      <div class="page-layout-inner">
+          <header-component :sidebarOpened="activeSidebar" :openSidebar="openSidebar" />
+          <main>
             <div class="main-content">
                 <el-row class="container">
-
-                      <Breadcrumb></Breadcrumb>
-
-                    <router-view></router-view>
+                  <Breadcrumb></Breadcrumb>
+                  <router-view></router-view>
                 </el-row>
-            </div>
-        </main>
-    </div>
-        <dimmer :active="activeDimmer" :closeDimmer="closeDimmer" />
-    </div>
-</div>
+              </div>
+          </main>
+      </div>
+      <dimmer :active="activeDimmer" :closeDimmer="closeDimmer" />
+  </div>
 </template>
 <script>
   import Header from '../Header'
@@ -61,6 +57,7 @@
 </script>
 
 <style lang="scss">
-// You can import all your SCSS variables using webpack alias
-@import '~scss_vars';
-@import './style.scss';</style>
+  // You can import all your SCSS variables using webpack alias
+  @import '~scss_vars';
+  @import './style.scss';
+</style>

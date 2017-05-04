@@ -76,6 +76,17 @@ const routes = [
     meta: {title: 'vuex示例', description: 'vuex示例', id: '02'}
   },
   {
+    path: 'element',
+    alias: '',
+    component: resolve => {
+      require.ensure([], () => {
+        resolve(require('../components/views/element'))
+      })
+    },
+    name: 'element',
+    meta: {title: 'element示例', description: '', id: '03'}
+  },
+  {
     path: 'vue-ex/hello',
     alias: '',
     component: resolve => {
@@ -151,6 +162,39 @@ const routes = [
     },
     name: 'vuex-ex/m2',
     meta: {title: 'vuex示例', description: 'vuex示例', id: '0202', pid: '02'}
+  },
+  {
+    path: 'element/el01-element-dialog',
+    alias: '',
+    component: resolve => {
+      require.ensure([], () => {
+        resolve(require('../components/views/el01-element-dialog'))
+      })
+    },
+    name: 'Dialog 对话框',
+    meta: {title: 'element Dialog 对话框', description: '', id: '0301', pid: '03'}
+  },
+  {
+    path: 'element/el02-element-table',
+    alias: '',
+    component: resolve => {
+      require.ensure([], () => {
+        resolve(require('../components/views/el02-element-table'))
+      })
+    },
+    name: 'Table 表格',
+    meta: {title: 'element Table 表格', description: '', id: '0302', pid: '03'}
+  },
+  {
+    path: 'element/el03-element-dialog',
+    alias: '',
+    component: resolve => {
+      require.ensure([], () => {
+        resolve(require('../components/views/el03-element-dialog'))
+      })
+    },
+    name: 'Dialog 对话框',
+    meta: {title: 'element Dialog 对话框', description: '', id: '0303', pid: '03'}
   }
 ]
 
