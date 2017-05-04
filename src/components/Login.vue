@@ -1,5 +1,5 @@
 <script>
-  import _ from 'lodash'
+  // import _ from 'lodash'
   import { mapActions } from 'vuex'
   export default {
     name: 'Login',
@@ -47,9 +47,7 @@
     },
     methods: {
       submitForm (formName) {
-        // console.log('formName', formName)
         this.$refs[formName].validate((valid) => {
-          // console.log('valid', valid)
           if (valid) {
             // alert('submit!')
             const {pass: password, user: username} = this.ruleForm2
@@ -58,16 +56,7 @@
               this.$router.push({path: '/'})
             },
             (res) => {
-              // 弹窗内错误提示
-              console.log(res, this.$refs[formName])
-              const msg = res.data.messages.join(' ')
-              if (_.startsWith(msg, '账号')) {
-                this.$refs[formName].fields[0].valid = false
-                this.$refs[formName].fields[0].error = msg
-              } else {
-                this.$refs[formName].fields[1].valid = false
-                this.$refs[formName].fields[1].error = msg
-              }
+
             })
           } else {
             console.log('error submit!!')
