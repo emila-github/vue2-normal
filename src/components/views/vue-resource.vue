@@ -1,26 +1,43 @@
 <template>
   <div class="main">
     <h1>{{ msg }}</h1>
-    <el-row :gutter="10">
+    <el-row>
+      <ul>
+        <li>get(url, [options])</li>
+        <li>head(url, [options])</li>
+        <li>delete(url, [options])</li>
+        <li>jsonp(url, [options])</li>
+        <li>post(url, [body], [options])</li>
+        <li>put(url, [body], [options])</li>
+        <li>patch(url, [body], [options])</li>
+      </ul>
+    </el-row>
+    <el-row>
       <el-col>
         <el-button type="text"><a href="https://github.com/pagekit/vue-resource" target="_blank">vue-resource API</a></el-button>
       </el-col>
       <el-col>
         <el-button type="primary" @click="doJsonp">jsonp</el-button>
-        <el-button type="primary" @click="doGet">get</el-button>
-        <el-button type="primary" @click="doGetError">getError</el-button>
-        <el-button type="primary" @click="doPost">post(Request Payload)</el-button>
-        <el-button type="primary" @click="doRequestGet">requestGet</el-button>
-        <el-button type="primary" @click="doRequestPost">requestPost</el-button>
-        <el-button type="primary" @click="doRequestPostError">requestPostError</el-button>
       </el-col>
     </el-row>
-    <el-row :gutter="10">
+    <el-row>
       <el-col>
+        <el-button type="primary" @click="doPost">post(Request Payload)</el-button>
         <el-button type="primary" @click="doPostQSP">post(query string parameters)</el-button>
         <el-button type="primary" @click="doPostFormData">post(Form Data)</el-button>
       </el-col>
     </el-row>
+    <el-row>
+      <el-button type="primary" @click="doGet">get</el-button>
+      <el-button type="primary" @click="doGetError">getError</el-button>
+    </el-row>
+    <el-row>
+      <el-button type="primary" @click="doRequestGet">requestGet</el-button>
+      <el-button type="primary" @click="doRequestPost">requestPost</el-button>
+      <el-button type="primary" @click="doRequestPostFormData">requestPostFormData</el-button>
+      <el-button type="primary" @click="doRequestPostError">requestPostError</el-button>
+    </el-row>
+
   </div>
 </template>
 
@@ -38,7 +55,7 @@
         console.log('doJsonp')
         let params = {heroid: 187}
         let uri = 'https://ac.ingame.qq.com/php/ingame/smoba/top_hero_detail.php'
-        this.$http.jsonp(uri, params).then(response => {
+        this.$http.jsonp(uri, {params}).then(response => {
           // success callback
           console.log('success callback', response)
         }, response => {
@@ -49,7 +66,7 @@
       doGet () {
         console.log('doGet')
         let params = {username: 'test'}
-        this.$http.get('/login.do', params).then(response => {
+        this.$http.get('/login.do', {params}).then(response => {
           // success callback
           console.log('success callback', response)
         }, response => {
@@ -59,7 +76,7 @@
       },
       doPost () {
         console.log('doPost')
-        let params = {username: 'wcj'}
+        let params = {username: 'wcj', age: 99}
         this.$http.post('/login.do', params).then(response => {
           // success callback
           console.log('success callback', response)
@@ -105,8 +122,8 @@
         })
       },
       doRequestGet () {
-        let params = {username: 'requestGet'}
-        request('get', 'login.do', params).then(response => {
+        let params = {username: 'doRequestGet'}
+        request('get', 'login.do', {params}).then(response => {
           // success callback
           console.log('success callback', response)
         }, response => {
@@ -115,8 +132,20 @@
         })
       },
       doRequestPost () {
-        let params = {username: 'requestGet'}
+        let params = {username: 'doRequestPost'}
         request('post', 'login.do', params).then(response => {
+          // success callback
+          console.log('success callback', response)
+        }, response => {
+          // error callback
+          console.log('error callback', response)
+        })
+      },
+      doRequestPostFormData () {
+        // let params = {username: 'doRequestPostFormData'}
+        let formData = new FormData()
+        formData.append('foo', 'bar')
+        request('post', 'login.do', formData, {emulateJSON: true}).then(response => {
           // success callback
           console.log('success callback', response)
         }, response => {
