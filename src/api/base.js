@@ -12,8 +12,10 @@ export function request (method, uri, body = null, options = {}) {
     console.error('API function call requires uri argument')
     return
   }
-  console.log('body= ', body, 'options= ', options)
-  let params = body ? [body, options] : [options]
+  method = method.toLowerCase()
+  let bodyFlag = ['post', 'put', 'patch']
+  // console.log('method= ', method, 'body= ', body, 'options= ', options, 'hasBody=', bodyFlag.includes(method))
+  let params = bodyFlag.includes(method) ? [body, options] : [options]
 
   // if (!apiRoot) {
   //   console.error('API ROOT config error')

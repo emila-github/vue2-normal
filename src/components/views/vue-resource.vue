@@ -34,6 +34,7 @@
     <el-row>
       <el-button type="primary" @click="doRequestGet">requestGet</el-button>
       <el-button type="primary" @click="doRequestPost">requestPost</el-button>
+      <el-button type="primary" @click="doRequestPostQSP">requestPostQSP</el-button>
       <el-button type="primary" @click="doRequestPostFormData">requestPostFormData</el-button>
       <el-button type="primary" @click="doRequestPostError">requestPostError</el-button>
     </el-row>
@@ -146,6 +147,16 @@
         let formData = new FormData()
         formData.append('foo', 'bar')
         request('post', 'login.do', formData, {emulateJSON: true}).then(response => {
+          // success callback
+          console.log('success callback', response)
+        }, response => {
+          // error callback
+          console.log('error callback', response)
+        })
+      },
+      doRequestPostQSP () {
+        let params = {username: 'doRequestPostQSP'}
+        request('post', 'login.do', null, {params}).then(response => {
           // success callback
           console.log('success callback', response)
         }, response => {
