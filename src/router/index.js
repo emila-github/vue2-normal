@@ -34,7 +34,7 @@ const router = new Router({
       ]
     },
     {
-      path: '/login',
+      path: '/signin',
       name: 'Login',
       component: LoginView,
       meta: {withoutAuth: true}
@@ -51,7 +51,7 @@ router.beforeEach((to, from, next) => {
     next()
   } else if (!store.state.account.username) {
     next({
-      path: '/login',
+      path: '/signin',
       query: { redirect: to.fullPath }
     })
   } else {

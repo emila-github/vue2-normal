@@ -34,14 +34,15 @@ app.$on('notify', (arg) => {
 })
 // 拦截异步请求,在请求头加token
 Vue.http.interceptors.push((request, next) => {
-  if (request.url === 'login') {
+  // console.log('request=', request)
+  if (request.url === 'signin') {
     next()
   } else {
     // console.log('interceptors store=', store)
     request.headers.set('Authorization', `JWT ${store.state.account.token}`)
     next((response) => {
       // TODO:验证
-      console.log('interceptors response=', response)
+      // console.log('interceptors response=', response)
       if (response.status === 200) {
         if (response.data.result !== 'success') {
           app.$emit('notify', {
@@ -59,7 +60,7 @@ Vue.http.interceptors.push((request, next) => {
           message: '请重新登录'
         })
         store.dispatch('signoutdry').then(() => {
-          app.$router.push({ path: '/login' })
+          app.$router.push({ path: '/signin' })
         })
       } else {
         app.$emit('notify', {

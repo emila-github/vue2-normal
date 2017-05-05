@@ -27,7 +27,7 @@
       <!--<el-submenu index="m2">-->
         <!--<template slot="title">m2</template>-->
       <!--</el-submenu>-->
-      <el-menu-item index="/login">登录</el-menu-item>
+      <el-menu-item index="/signin">登录</el-menu-item>
       <el-menu-item index="/404">404</el-menu-item>
     </el-menu>
   </div>

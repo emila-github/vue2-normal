@@ -27,7 +27,8 @@
       // ...mapActions(['signout']),
       signout () {
         this.$store.dispatch('signout').then(() => {
-          this.$router.push('/login')
+          // this.$router.push({path: '/signin'})
+          this.$router.push({name: 'Login'})
         })
       },
       handleSelect (key, keyPath) {

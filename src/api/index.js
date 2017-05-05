@@ -4,6 +4,7 @@ import * as urls from './map-urls'
 export function login ({username, password}) {
   const params = {
     userName: username,
+    username: username,
     password
   }
   return request('post', urls.LOGIN, params)
