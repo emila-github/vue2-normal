@@ -1,7 +1,7 @@
 //  通用请求处理
 import Vue from 'vue'
 import { Notification } from 'element-ui'
-import { apiRoot } from './config'
+// import { apiRoot } from './config'
 export function request (method, uri, params = null) {
   if (!method) {
     console.error('API function call requires method argument')
@@ -13,13 +13,13 @@ export function request (method, uri, params = null) {
     return
   }
 
-  if (!apiRoot) {
-    console.error('API ROOT config error')
-    return
-  }
-  let url = apiRoot + uri
+  // if (!apiRoot) {
+  //   console.error('API ROOT config error')
+  //   return
+  // }
+  // let url = apiRoot + uri
   return new Promise((resolve, reject) => {
-    return Vue.http[method](url, params).then(res => {
+    return Vue.http[method](uri, params).then(res => {
       let datas = res.data.data || []
       if (res.data.result === 'success') {
         resolve(datas)

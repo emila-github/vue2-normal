@@ -28,16 +28,16 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-        // // 添加代理后可以访问线上的接口 ： http://localhost:8080/ty/city/list --> http://vr.17173.com/ty/city/list
-        // '/ty': {
-        //     target: 'http://vr.17173.com/',
-        //     changeOrigin: true
-        // },
+        // 添加代理后可以访问线上的接口 ： http://localhost:8080/ty/city/list --> http://vr.17173.com/ty/city/list
+        '/ty': {
+            target: 'http://vr.17173.com/',
+            changeOrigin: true
+        }// ,
         // '/**/*.do': {
-        //     target: 'http://q7gyvt.app.test.173ops.com/',
+        //     target: 'http://bptw9y.app.test.173ops.com/',
         //     changeOrigin: true,
         //     pathRewrite: {
-        //       // '/login.do': '/login'
+        //       '/login.do': '/login'
         //       // '^/mai/' : '/'
         //     }
         // }

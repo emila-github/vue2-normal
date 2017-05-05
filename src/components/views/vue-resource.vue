@@ -9,10 +9,16 @@
         <el-button type="primary" @click="doJsonp">jsonp</el-button>
         <el-button type="primary" @click="doGet">get</el-button>
         <el-button type="primary" @click="doGetError">getError</el-button>
-        <el-button type="primary" @click="doPost">post</el-button>
+        <el-button type="primary" @click="doPost">post(Request Payload)</el-button>
         <el-button type="primary" @click="doRequestGet">requestGet</el-button>
         <el-button type="primary" @click="doRequestPost">requestPost</el-button>
         <el-button type="primary" @click="doRequestPostError">requestPostError</el-button>
+      </el-col>
+    </el-row>
+    <el-row :gutter="10">
+      <el-col>
+        <el-button type="primary" @click="doPostQSP">post(query string parameters)</el-button>
+        <el-button type="primary" @click="doPostFormData">post(Form Data)</el-button>
       </el-col>
     </el-row>
   </div>
@@ -55,6 +61,31 @@
         console.log('doPost')
         let params = {username: 'wcj'}
         this.$http.post('/login.do', params).then(response => {
+          // success callback
+          console.log('success callback', response)
+        }, response => {
+          // error callback
+          console.log('error callback', response)
+        })
+      },
+      doPostQSP () {
+        console.log('doPostQSP')
+        let params = {username: 'wcj'}
+        this.$http.post('/login.do', null, {params}).then(response => {
+          // success callback
+          console.log('success callback', response)
+        }, response => {
+          // error callback
+          console.log('error callback', response)
+        })
+      },
+      doPostFormData () {
+        // https://github.com/pagekit/vue-resource/issues/267
+        console.log('doPostFormData')
+        let formData = new FormData()
+        formData.append('foo', 'bar')
+        // let headers = {'Content-Type': 'multipart/form-data'}
+        this.$http.post('/login.do', formData, {emulateJSON: true}).then(response => {
           // success callback
           console.log('success callback', response)
         }, response => {
@@ -112,5 +143,10 @@
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+  .el-row {
+    margin-bottom: 20px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 </style>

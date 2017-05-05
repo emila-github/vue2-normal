@@ -7,6 +7,7 @@ import store from './store'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
 import VueResource from 'vue-resource'
+import { apiRoot } from './api/config'
 Vue.use(VueResource)
 Vue.use(ElementUI)
 Vue.config.productionTip = false
@@ -32,6 +33,8 @@ app.$on('notify', (arg) => {
     lastNotify = ''
   }, 1000)
 })
+// 配置api根路径
+Vue.http.options.root = apiRoot
 // 拦截异步请求,在请求头加token
 Vue.http.interceptors.push((request, next) => {
   // console.log('request=', request)
