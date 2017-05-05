@@ -87,6 +87,17 @@ const routes = [
     meta: {title: 'element示例', description: '', id: '03'}
   },
   {
+    path: 'vue-resource',
+    alias: '',
+    component: resolve => {
+      require.ensure([], () => {
+        resolve(require('../components/views/vue-resource'))
+      })
+    },
+    name: '',
+    meta: {title: 'vue-resource示例', description: '', id: '04'}
+  },
+  {
     path: 'vue-ex/hello',
     alias: '',
     component: resolve => {

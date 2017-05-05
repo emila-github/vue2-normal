@@ -52,7 +52,7 @@
             // alert('submit!')
             const {pass: password, user: username} = this.ruleForm2
             this.signin({username, password}).then((datas) => {
-              // console.log('do 2', datas)
+              // console.log('do 2 datas=', datas)
               this.$router.push({path: '/'})
             },
             (res) => {

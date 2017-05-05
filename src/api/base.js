@@ -26,10 +26,12 @@ export function request (method, uri, params = null) {
       } else {
         Notification.error({
           title: '提示',
-          message: res.data.messages && res.data.messages.join(',') || '登录失败请稍后再试！'
+          message: res.data.messages && res.data.messages.join(',') || '出错了，请稍后再试！'
         })
         reject(res)
       }
+    }, res => {
+      reject(res)
     })
   })
 }
