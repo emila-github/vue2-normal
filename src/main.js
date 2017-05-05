@@ -46,7 +46,11 @@ Vue.http.interceptors.push((request, next) => {
         if (response.data.result !== 'success') {
           app.$emit('notify', {
             title: `${request.url}: 请求失败`,
-            message: response.data.messages.join(' ')
+            message: response &&
+              response.data &&
+              response.data.messages &&
+              response.data.messages.join(' ') ||
+              '未知错误'
           })
         }
       } else if (response.status === 401) {

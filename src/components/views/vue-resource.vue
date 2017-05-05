@@ -6,6 +6,7 @@
         <el-button type="text"><a href="https://github.com/pagekit/vue-resource" target="_blank">vue-resource API</a></el-button>
       </el-col>
       <el-col>
+        <el-button type="primary" @click="doJsonp">jsonp</el-button>
         <el-button type="primary" @click="doGet">get</el-button>
         <el-button type="primary" @click="doGetError">getError</el-button>
         <el-button type="primary" @click="doPost">post</el-button>
@@ -27,6 +28,18 @@
       }
     },
     methods: {
+      doJsonp () {
+        console.log('doJsonp')
+        let params = {heroid: 187}
+        let uri = 'https://ac.ingame.qq.com/php/ingame/smoba/top_hero_detail.php'
+        this.$http.jsonp(uri, params).then(response => {
+          // success callback
+          console.log('success callback', response)
+        }, response => {
+          // error callback
+          console.log('error callback', response)
+        })
+      },
       doGet () {
         console.log('doGet')
         let params = {username: 'test'}
@@ -35,6 +48,7 @@
           console.log('success callback', response)
         }, response => {
           // error callback
+          console.log('error callback', response)
         })
       },
       doPost () {
