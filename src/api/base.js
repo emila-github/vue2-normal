@@ -1,6 +1,6 @@
 //  通用请求处理
 import Vue from 'vue'
-import { Notification } from 'element-ui'
+// import { Notification } from 'element-ui'
 // import { apiRoot } from './config'
 export function request (method, uri, body = null, options = {}) {
   if (!method) {
@@ -17,6 +17,7 @@ export function request (method, uri, body = null, options = {}) {
   // console.log('method= ', method, 'body= ', body, 'options= ', options, 'hasBody=', bodyFlag.includes(method))
   let params = bodyFlag.includes(method) ? [body, options] : [options]
 
+  // Vue.http.options.root 中已经设置了全局的api根 这里无需处理
   // if (!apiRoot) {
   //   console.error('API ROOT config error')
   //   return
