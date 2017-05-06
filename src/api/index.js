@@ -13,3 +13,25 @@ export function login ({username, password}) {
 export function logout () {
   return request('post', urls.LOGOUT)
 }
+
+// 门店列表
+export function storeList ({
+  pageNo = 1,
+  pageSize = 20,
+  name,
+  province,
+  city,
+  recommendFlag,
+  activingFlag
+}) {
+  const params = {
+    pageNo,
+    pageSize,
+    name,
+    province,
+    city,
+    recommendFlag,
+    activingFlag
+  }
+  return request('get', urls.STORELIST, {params})
+}

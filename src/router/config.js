@@ -98,6 +98,17 @@ const routes = [
     meta: {title: 'vue-resource示例', description: '', id: '04'}
   },
   {
+    path: 'vr/store/list',
+    alias: '',
+    component: resolve => {
+      require.ensure([], () => {
+        resolve(require('../components/views/vr-store-list'))
+      })
+    },
+    name: '',
+    meta: {title: '门店管理模块', description: '', id: '05'}
+  },
+  {
     path: 'vue-ex/hello',
     alias: '',
     component: resolve => {
