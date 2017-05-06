@@ -28,10 +28,11 @@ export function request (method, uri, body = null, options = {}) {
       if (res.data.result === 'success') {
         resolve(datas)
       } else {
-        Notification.error({
-          title: '提示',
-          message: res.data.messages && res.data.messages.join(',') || '出错了，请稍后再试！'
-        })
+        // Vue.http.interceptors.push 中已经处理了异常  这里不需要再处理
+        // Notification.error({
+        //   title: '提示',
+        //   message: res.data.messages && res.data.messages.join(',') || '出错了，请稍后再试！'
+        // })
         reject(res)
       }
     }, res => {

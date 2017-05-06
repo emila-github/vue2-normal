@@ -7,7 +7,7 @@ export function login ({username, password}) {
     username: username,
     password
   }
-  return request('post', urls.LOGIN, params)
+  return request('post', urls.LOGIN, null, {params})
 }
 // 登出
 export function logout () {

@@ -18,5 +18,9 @@
   }
 </script>
 
-<style>
+<style scoped>
+  .container{
+    width: 200px;
+    margin: 20px auto;
+  }
 </style>
