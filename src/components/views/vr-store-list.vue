@@ -8,34 +8,34 @@
       description="pagination 切换 pagesize时多次请求问题未解决"
       show-icon>
     </el-alert>
-    <el-form :inline="true" :model="searchCache" class="demo-form-inline">
-      <el-form-item label="名称">
+    <el-form :inline="true" :model="searchCache" class="demo-form-inline" ref="searchForm">
+      <el-form-item label="名称" prop="name">
         <el-input v-model="searchCache.name" placeholder="名称"></el-input>
       </el-form-item>
-      <el-form-item label="省">
+      <el-form-item label="省" prop="province">
         <el-select v-model="searchCache.province" placeholder="省" @change="changeProvince" style="width:120px;" clearable>
           <el-option v-for="d in provinceList" :label="d.name" :value="d.code" :key="d.code"></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="市">
+      <el-form-item label="市" prop="city">
         <el-select v-model="searchCache.city" placeholder="市" style="width:120px;" clearable>
           <el-option v-for="d in cityList" :label="d.name" :value="d.code" :key="d.code"></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="申请日期">
+      <el-form-item label="申请日期" prop="createTime">
         <el-date-picker
           v-model="searchCache.createTime"
           type="datetimerange"
           placeholder="申请日期">
         </el-date-picker>
       </el-form-item>
-      <el-form-item label="173推荐">
+      <el-form-item label="173推荐" prop="recommendFlag">
         <el-select v-model="searchCache.recommendFlag" placeholder="推荐状态" style="width:120px;" clearable>
           <el-option label="是" :value="true"></el-option>
           <el-option label="否" :value="false"></el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="活动状态">
+      <el-form-item label="活动状态" prop="activingFlag">
         <el-select v-model="searchCache.activingFlag" placeholder="活动状态" style="width:120px;" clearable>
           <el-option label="进行中" :value="true"></el-option>
           <el-option label="已结束" :value="false"></el-option>
@@ -43,9 +43,14 @@
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="formSearch">查询</el-button>
+        <el-button @click="resetForm('searchForm')">重置</el-button>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" icon="plus" @click.native.prevent="addRow">添加</el-button>
+        <router-link :to="{ path: '/vr/store/list/add'}">
+          <el-button type="primary" icon="plus">添加</el-button>
+        </router-link>
+        <el-button type="primary" icon="plus" @click.native.prevent="addRow">添加(click)</el-button>
+        
       </el-form-item>
     </el-form>
     <el-table
@@ -182,7 +187,7 @@ export default {
   },
   methods: {
     addRow () {
-
+      this.$router.push({path: '/vr/store/list/add', params: { flag: 123 }})
     },
     editRow (index, row) {
       console.log(index, row)
@@ -218,6 +223,10 @@ export default {
         this.$set(this.search, 'upperTime', createTime[1] ? +createTime[1] : '')
       }
       this.fetchList(this.searchCache)
+    },
+    resetForm (formName) {
+      console.log('do resetForm')
+      this.$refs[formName].resetFields()
     },
     // 更新门店列表
     fetchList (params = {}) {
