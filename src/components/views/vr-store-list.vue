@@ -22,13 +22,30 @@
           <el-option v-for="d in cityList" :label="d.name" :value="d.code" :key="d.code"></el-option>
         </el-select>
       </el-form-item>
-      <el-date-picker
-        v-model="searchCache.createTime"
-        type="datetimerange"
-        placeholder="选择时间范围">
-      </el-date-picker>
+      <el-form-item label="申请日期">
+        <el-date-picker
+          v-model="searchCache.createTime"
+          type="datetimerange"
+          placeholder="申请日期">
+        </el-date-picker>
+      </el-form-item>
+      <el-form-item label="173推荐">
+        <el-select v-model="searchCache.recommendFlag" placeholder="推荐状态" style="width:120px;" clearable>
+          <el-option label="是" :value="true"></el-option>
+          <el-option label="否" :value="false"></el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item label="活动状态">
+        <el-select v-model="searchCache.activingFlag" placeholder="活动状态" style="width:120px;" clearable>
+          <el-option label="进行中" :value="true"></el-option>
+          <el-option label="已结束" :value="false"></el-option>
+        </el-select>
+      </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="formSearch">查询</el-button>
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" icon="plus" @click.native.prevent="addRow">添加</el-button>
       </el-form-item>
     </el-form>
     <el-table
@@ -39,16 +56,62 @@
         fixed
         prop="id"
         label="ID"
-        width="150">
+        width="100">
       </el-table-column>
       <el-table-column
         prop="provinceName"
         label="省市"
         width="120">
+        <template scope="scope">
+          {{ scope.row.provinceName }} {{ scope.row.cityName }}
+        </template>
       </el-table-column>
       <el-table-column
         prop="name"
         label="店名">
+      </el-table-column>
+      <el-table-column
+        label="申请时间"
+        width="200">
+        <template scope="scope">
+          <el-icon name="time"></el-icon>
+          <span style="margin-left: 10px">{{ scope.row.createTime | datetime }}</span><br/>
+          <el-icon name="time"></el-icon>
+          <span style="margin-left: 10px">{{ scope.row.createTime | dateonly }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column label="评分" width="80" property="level"></el-table-column>
+      <el-table-column label="173推荐" width="90">
+        <template scope="scope">
+          <i class="el-icon-star-on" v-if="scope.row.recommendFlag"></i>
+          <i class="el-icon-star-off" v-if="!scope.row.recommendFlag"></i>
+        </template>
+      </el-table-column>
+      <el-table-column
+        fixed="right"
+        label="操作"
+        width="250">
+        <template scope="scope">
+          <el-button
+            @click.native.prevent="deleteRow2(scope.$index, tableData, scope)"
+            type="text"
+            size="small">
+            移除
+          </el-button>
+          <el-button
+            @click.native.prevent="deleteRow2(scope.$index, tableData, scope)"
+            type="text"
+            size="small">
+            移除
+          </el-button>
+          <el-button
+            size="small"
+            @click="editRow(scope.$index, scope.row)">编辑</el-button>
+          <el-button
+            size="small"
+            type="danger"
+            @click="deleteRow(scope.$index, scope.row)">删除</el-button>
+        </template>
       </el-table-column>
     </el-table>
 
@@ -118,6 +181,19 @@ export default {
     })
   },
   methods: {
+    addRow () {
+
+    },
+    editRow (index, row) {
+      console.log(index, row)
+    },
+    deleteRow (index, row) {
+      console.log(index, row)
+    },
+    deleteRow2 (index, rows, scope) {
+      console.log('deleteRow2 scope=', scope)
+      rows.splice(index, 1)
+    },
     changeProvince (provinceCode) {
       this.$set(this.searchCache, 'city', '')
       this.fetchCityList({provinceCode})

@@ -8,6 +8,13 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
 import VueResource from 'vue-resource'
 import { apiRoot } from './api/config'
+// Import Helpers for filters
+import filters from './filters/index'
+
+// Import Install and register helper items
+Vue.filter('datetime', filters.datetime)
+Vue.filter('dateonly', filters.dateonly)
+
 Vue.use(VueResource)
 Vue.use(ElementUI)
 Vue.config.productionTip = false
