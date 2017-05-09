@@ -32,14 +32,14 @@ module.exports = {
         '/ty': {
             target: 'http://vr.17173.com/',
             changeOrigin: true
-        // },
-        // '/**/*.do': {
-        //     target: 'http://bptw9y.app.test.173ops.com/',
-        //     changeOrigin: true,
-        //     pathRewrite: {
-        //       '.do': ''
-        //       // '^/mai/' : '/'
-        //     }
+        },
+        '/**/*.do': {
+            target: 'http://bptw9y.app.test.173ops.com/',
+            changeOrigin: true,
+            pathRewrite: {
+              '.do': ''
+              // '^/mai/' : '/'
+            }
         }
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"

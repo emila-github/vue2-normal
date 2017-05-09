@@ -1,4 +1,4 @@
-import * as types from './mutation-types'
+import * as types from './types'
 import menuConfig from '../router/config'
 import _ from 'lodash'
 

@@ -124,7 +124,7 @@
       },
       doRequestGet () {
         let params = {username: 'doRequestGet'}
-        request('get', 'login.do', {params}).then(response => {
+        request('get', 'login.do', null, {params}).then(response => {
           // success callback
           console.log('success callback', response)
         }, response => {

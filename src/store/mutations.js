@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import _ from 'lodash'
-import * as types from './mutation-types'
+import * as types from './types'
 export default {
   // 设置左侧菜单树
   [types.MENU_TREE] (state, {menu}) {
