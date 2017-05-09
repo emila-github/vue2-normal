@@ -12,8 +12,11 @@ import { apiRoot } from './api/config'
 import filters from './filters/index'
 
 // Import Install and register helper items
-Vue.filter('datetime', filters.datetime)
-Vue.filter('dateonly', filters.dateonly)
+// Vue.filter('datetime', filters.datetime)
+// Vue.filter('dateonly', filters.dateonly)
+for (let filter in filters) {
+  Vue.filter(filter, filters[filter])
+}
 
 Vue.use(VueResource)
 Vue.use(ElementUI)
