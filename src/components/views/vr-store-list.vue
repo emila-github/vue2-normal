@@ -1,6 +1,13 @@
 <template>
   <div class="main">
     <h1>{{ msg }}</h1>
+    <el-alert
+      style="margin-bottom:10px;"
+      title="未处理问题"
+      type="warning"
+      description="pagination 切换 pagesize时多次请求问题未解决"
+      show-icon>
+    </el-alert>
     <el-form :inline="true" :model="searchCache" class="demo-form-inline">
       <el-form-item label="名称">
         <el-input v-model="searchCache.name" placeholder="名称"></el-input>

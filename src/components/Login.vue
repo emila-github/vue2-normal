@@ -78,9 +78,9 @@
     <el-button type="primary" :size="full" v-if="!dialogFormVisible" @click="dialogFormVisible = true">登录</el-button>
     
     <el-dialog title="登录" v-model="dialogFormVisible" :modal-append-to-body="false" :close-on-click-modal="false" size="tiny" :show-close="false">
-      <el-form :model="ruleForm2" :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm">
-        <el-form-item label="用户名" prop="user" placeholder="用户名">
-          <el-input v-model="ruleForm2.user"></el-input>
+      <el-form :model="ruleForm2" :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm" label-position="right">
+        <el-form-item label="用户名" prop="user">
+          <el-input v-model="ruleForm2.user" placeholder="用户名"></el-input>
         </el-form-item>
         <el-form-item label="密码" prop="pass">
           <el-input type="password" v-model="ruleForm2.pass" placeholder="密码" @keyup.native.enter="submitForm('ruleForm2')"></el-input>
