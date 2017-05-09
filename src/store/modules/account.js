@@ -32,14 +32,23 @@ const getters = {
   token: state => state.token
 }
 const actions = {
-  signin ({commit}, {username, password}) {
-    return api.login({username, password}).then((datas) => {
-      // console.log('do 1 datas=', datas)
-      commit('setUsername', {username})
-      commit('setToken', {token: datas.token})
-      datas.test = 'test'
-      return datas
-    })
+  // signin ({commit}, {username, password}) {
+  //   return api.login({username, password}).then((datas) => {
+  //     // console.log('do 1 datas=', datas)
+  //     commit('setUsername', {username})
+  //     commit('setToken', {token: datas.token})
+  //     datas.test = 'test'
+  //     return datas
+  //   })
+  // },
+  // 与上面 signin方法等价
+  async signin ({commit}, {username, password}) {
+    let datas = await api.login({username, password})
+    // console.log('do 1 datas=', datas)
+    commit('setUsername', {username})
+    commit('setToken', {token: datas.token})
+    datas.test = 'test'
+    return datas
   },
   signout ({commit}) {
     // console.log('signout')
