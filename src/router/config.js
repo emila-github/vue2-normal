@@ -109,6 +109,17 @@ const routes = [
     meta: {title: '门店管理模块', description: '', id: '05'}
   },
   {
+    path: 'vr/store/list/add',
+    alias: '',
+    component: resolve => {
+      require.ensure([], () => {
+        resolve(require('../components/views/vr-store-add'))
+      })
+    },
+    name: '',
+    meta: {title: '添加门店', description: '', id: '0501', pid: '05'}
+  },
+  {
     path: 'vue-ex/hello',
     alias: '',
     component: resolve => {

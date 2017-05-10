@@ -41,3 +41,9 @@ export function citySelect ({provinceCode}) {
   return request('get', urls.CITYSELECT, null, {params: {provinceCode}})
   // return Vue.http.get(urls.CITYSELECT)
 }
+
+// 公用测试接口
+// 表单提交
+export function formSubmitTest (params = {}) {
+  return request('post', '/test/form.do', params)
+}
