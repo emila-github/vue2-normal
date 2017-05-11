@@ -47,3 +47,7 @@ export function citySelect ({provinceCode}) {
 export function formSubmitTest (params = {}) {
   return request('post', '/test/form.do', params)
 }
+// 表单提交
+export function formSubmitFormDataTest (params = {}) {
+  return request('post', '/test/form.do', params, {emulateJSON: true})
+}

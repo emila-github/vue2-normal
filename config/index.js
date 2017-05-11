@@ -40,6 +40,16 @@ module.exports = {
               '.do': ''
               // '^/mai/' : '/'
             }
+        },
+        // 体验店图片上传
+        '/image/upload': {
+            target: 'http://bptw9y.app.test.173ops.com/',
+            changeOrigin: true
+        },
+        // 活动图片上传
+        '/api/v2/activity/': {
+            target: 'http://p.act.17173.com/',
+            changeOrigin: true
         }
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"

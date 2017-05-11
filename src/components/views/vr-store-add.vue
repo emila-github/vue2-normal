@@ -2,6 +2,14 @@
   <div class="main">
   	<div slot="breadcrumb"></div>
     <h1>{{ msg }}</h1>
+<!--     <form action="http://p.act.17173.com/api/v2/activity/7749/picture/upload" method="post">
+      <input type="file" name="uploadimg"></input>
+      <input type="submit" value="提交">
+    </form>
+    <form @submit.prevent="testFormSubmit">
+      <input type="file" name="file"></input>
+      <input type="submit" value="提交">
+    </form> -->
     <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
       <el-form-item label="活动名称" prop="name">
         <el-input v-model="ruleForm.name"></el-input>
@@ -45,17 +53,45 @@
       <el-form-item label="活动形式" prop="desc">
         <el-input type="textarea" v-model="ruleForm.desc"></el-input>
       </el-form-item>
-      <el-form-item label="图片上传" prop="desc">
+      <!-- https://jsonplaceholder.typicode.com/posts/ -->
+      <!-- http://bptw9y.app.test.173ops.com/image/upload -->
+      <el-form-item label="体验店图片上传" prop="fileList">
         <el-upload
           class="upload-demo"
           ref="upload"
-          action="https://jsonplaceholder.typicode.com/posts/"
+          :on-success="handleUploadSuccess" :multiple="false" accept=".jpg, .png, .gif"
+          :action="$http.options.root + '/image/upload'"
+          :headers="jwt"
+          :data="fileParams"
+          :on-change="handleChange"
           :on-preview="handlePreview"
           :on-remove="handleRemove"
-          :file-list="fileList"
+          :file-list="ruleForm.fileList"
+          list-type="picture"
           :auto-upload="false">
           <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
           <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</el-button>
+          <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+        </el-upload>
+      </el-form-item>
+      <!-- http://p.act.17173.com/api/v2/activity/7749/picture/upload -->
+      <el-form-item label="act图片上传" prop="fileList">
+        <el-upload
+          name="uploadimg"
+          :headers="uploadHeaders"
+          class="upload-demo"
+          ref="uploadAct"
+          action="/api/v2/activity/7844/picture/upload"
+          :multiple="true"
+          :data="fileParams"
+          :on-change="handleChange"
+          :on-preview="handlePreview"
+          :on-remove="handleRemove"
+          :file-list="ruleForm.fileList"
+          list-type="picture"
+          :auto-upload="false">
+          <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
+          <el-button style="margin-left: 10px;" size="small" type="success" @click="submitActUpload">上传到服务器</el-button>
           <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
         </el-upload>
       </el-form-item>
@@ -73,6 +109,13 @@
     name: 'vr-store-add',
     data () {
       return {
+        uploadHeaders: {
+          // 'Content-Type': 'multipart/form-data;'
+        },
+        fileParams: {
+          a: 1,
+          b: 2
+        },
         msg: 'vr-store-add',
         ruleForm: {
           name: '',
@@ -82,7 +125,17 @@
           delivery: false,
           type: [],
           resource: '',
-          desc: ''
+          desc: '',
+          fileList: [
+            // {
+            //   name: 'food.jpeg',
+            //   url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
+            // },
+            // {
+            //   name: 'food2.jpeg',
+            //   url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
+            // }
+          ]
         },
         rules: {
           name: [
@@ -106,28 +159,94 @@
           ],
           desc: [
             { required: true, message: '请填写活动形式', trigger: 'blur' }
+          ],
+          fileList: [
+            { type: 'array', required: true, message: '请至少添加一张图片', trigger: 'change' }
           ]
         }
       }
     },
+    computed: {
+      jwt () {
+        return {
+          Authorization: `JWT ${this.$store.state.account.token}`,
+          'X-Requested-With': 'XMLHttpRequest'
+        }
+      }
+    },
     methods: {
+      handleUploadSuccess (file) {
+        console.log(file, this.ruleForm.fileList)  // eslint-disable-line no-console
+        // this.isUploading = false
+        if (file.result === 'success') {
+          // const d = _.pick(file.data, ['normalImage', 'smallImage', 'largeImage'])
+          // d.mainFlag = this.detail.storeImageVos.length === this.detail.coverIndex
+          // this.detail.storeImageVos.push(d)
+        } else {
+          this.$notify.error({
+            title: file.messages.join(' '),
+            message: file.errors.join(' ')
+          })
+        }
+      },
+      // testFormSubmit () {
+      //   var formData = new FormData(event.target)
+      //   // this.$http.post('http://p.act.17173.com/api/v2/activity/7749/picture/upload', formData, {
+      //   this.$http.post('/image/upload', formData, {
+      //     emulateJSON: true,
+      //     headers: {
+      //       'Access-Control-Allow-Origin': '*',
+      //       'Content-Type': 'application/x-www-form-urlencoded',
+      //       'Accept': 'application/json, text/plain, */*',
+      //       'Access-Control-Allow-Headers': 'Origin, Accept, Content-Type, Authorization, Access-Control-Allow-Origin'
+      //     }
+      //   }).then((response) => {
+      //       // success callback
+      //   }, (response) => {
+      //       // error callback
+      //   })
+      // },
       ...mapActions({
-        formTest: 'test/formTest'
+        formTest: 'test/formTest',
+        formDataTest: 'test/formDataTest'
       }),
+      submitActUpload () {
+        this.$refs.uploadAct.submit()
+      },
       submitUpload () {
         this.$refs.upload.submit()
       },
       handleRemove (file, fileList) {
-        console.log(file, fileList)
+        console.log('handleRemove', file, fileList)
       },
       handlePreview (file) {
-        console.log(file)
+        console.log('handlePreview=', file)
+      },
+      handleChange (file, fileList) {
+        console.log('handleChange', file, fileList)
+        this.ruleForm.fileList = fileList.slice(-3)
       },
       submitForm (formName) {
+        // console.log('this.$refs.upload=', this.$refs.upload.uploadFiles)
+        console.log('validate before submit!', this.ruleForm)
         this.$refs[formName].validate((valid) => {
           if (valid) {
             console.log('submit!', this.ruleForm)
-            this.formTest(this.ruleForm)
+            // Post - FormData方式
+            let formData = new FormData()
+            for (let item in this.ruleForm) {
+              console.log(item, this.ruleForm[item])
+              formData.append(item, this.ruleForm[item])
+            }
+            let uploadFiles = this.$refs.upload.uploadFiles
+            for (let i = 0, len = uploadFiles.length; i < len; i++) {
+              let imgFile = uploadFiles[i].raw
+              formData.append(`uploadFiles[${i}]`, imgFile)
+            }
+            console.log('formData=', formData)
+            this.formDataTest(formData)
+            // Post - query stting parameters 方式
+            // this.formTest(this.ruleForm)
           } else {
             console.log('error submit!!')
             return false

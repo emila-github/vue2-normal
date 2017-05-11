@@ -15,6 +15,12 @@ const actions = {
       commit('setFormSubmitResultDatas', datas)
       return datas
     })
+  },
+  'test/formDataTest' ({commit}, payload = {}) {
+    return api.formSubmitFormDataTest(payload).then(datas => {
+      commit('setFormSubmitResultDatas', datas)
+      return datas
+    })
   }
 }
 export default {
