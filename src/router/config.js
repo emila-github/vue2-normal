@@ -98,6 +98,17 @@ const routes = [
     meta: {title: 'vue-resource示例', description: '', id: '04'}
   },
   {
+    path: 'axios',
+    alias: '',
+    component: resolve => {
+      require.ensure([], () => {
+        resolve(require('../components/views/vue-axios'))
+      })
+    },
+    name: '',
+    meta: {title: 'axios示例', description: '', id: '06'}
+  },
+  {
     path: 'vr/store/list',
     alias: '',
     component: resolve => {
