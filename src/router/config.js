@@ -145,6 +145,13 @@ const routes = [
     meta: {title: '封装一个第三方库vue component', description: '', id: '0104', pid: '01'}
   },
   {
+    path: 'vue-ex/vue-js',
+    alias: '',
+    component: require(`../components/views/vue-js`),
+    name: '',
+    meta: {title: 'Vue框架引入JS库的正确姿势', description: '', id: '0105', pid: '01'}
+  },
+  {
     path: 'vue-ex/ex01-component-recursive',
     alias: '',
     component: resolve => {

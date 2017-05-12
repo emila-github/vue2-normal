@@ -11,6 +11,9 @@ import { apiRoot } from './api/config'
 // Import Helpers for filters
 import filters from './filters/index'
 
+import moment from 'moment'
+Object.defineProperty(Vue.prototype, '$moment', { value: moment })
+
 // Import Install and register helper items
 // Vue.filter('datetime', filters.datetime)
 // Vue.filter('dateonly', filters.dateonly)
