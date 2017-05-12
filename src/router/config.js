@@ -138,6 +138,13 @@ const routes = [
     meta: {title: '生命周期钩子', description: '生命周期钩子', id: '0103', pid: '01'}
   },
   {
+    path: 'vue-ex/vue-componet-countup',
+    alias: '',
+    component: require(`../components/views/vue-componet-countup/index`),
+    name: '',
+    meta: {title: '封装一个第三方库vue component', description: '', id: '0104', pid: '01'}
+  },
+  {
     path: 'vue-ex/ex01-component-recursive',
     alias: '',
     component: resolve => {
