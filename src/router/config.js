@@ -131,6 +131,13 @@ const routes = [
     meta: {title: 'hello', description: 'vue hello', id: '0101', pid: '01'}
   },
   {
+    path: 'vue-ex/lifecycle',
+    alias: '',
+    component: require(`../components/views/vue-lifecycle`),
+    name: '',
+    meta: {title: '生命周期钩子', description: '生命周期钩子', id: '0103', pid: '01'}
+  },
+  {
     path: 'vue-ex/ex01-component-recursive',
     alias: '',
     component: resolve => {
