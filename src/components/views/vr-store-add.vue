@@ -55,39 +55,40 @@
       </el-form-item>
       <!-- https://jsonplaceholder.typicode.com/posts/ -->
       <!-- http://bptw9y.app.test.173ops.com/image/upload -->
-      <el-form-item label="体验店图片上传" prop="fileList">
+      <el-form-item label="体验店图片上传" prop="fileListVr">
+      <!-- :on-change="handleChange" -->
         <el-upload
           class="upload-demo"
-          ref="upload"
-          :on-success="handleUploadSuccess" :multiple="false" accept=".jpg, .png, .gif"
+          ref="uploadVr"
+          :on-success="handleVrUploadSuccess" :multiple="true" accept=".jpg, .png, .gif"
           :action="$http.options.root + '/image/upload'"
           :headers="jwt"
           :data="fileParams"
-          :on-change="handleChange"
           :on-preview="handlePreview"
           :on-remove="handleRemove"
-          :file-list="ruleForm.fileList"
+          :file-list="ruleForm.fileListVr"
           list-type="picture"
           :auto-upload="false">
           <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
-          <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</el-button>
+          <el-button style="margin-left: 10px;" size="small" type="success" @click="submitVrUpload">上传到服务器</el-button>
           <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
         </el-upload>
       </el-form-item>
       <!-- http://p.act.17173.com/api/v2/activity/7749/picture/upload -->
-      <el-form-item label="act图片上传" prop="fileList">
+      <el-form-item label="act图片上传" prop="fileListAct">
         <el-upload
           name="uploadimg"
           :headers="uploadHeaders"
           class="upload-demo"
           ref="uploadAct"
+          :on-success="handleActUploadSuccess"
           action="/api/v2/activity/7844/picture/upload"
           :multiple="true"
           :data="fileParams"
           :on-change="handleChange"
           :on-preview="handlePreview"
           :on-remove="handleRemove"
-          :file-list="ruleForm.fileList"
+          :file-list="ruleForm.fileListAct"
           list-type="picture"
           :auto-upload="false">
           <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
@@ -135,7 +136,9 @@
             //   name: 'food2.jpeg',
             //   url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
             // }
-          ]
+          ],
+          fileListAct: [],
+          fileListVr: []
         },
         rules: {
           name: [
@@ -160,7 +163,7 @@
           desc: [
             { required: true, message: '请填写活动形式', trigger: 'blur' }
           ],
-          fileList: [
+          fileListVr: [
             { type: 'array', required: true, message: '请至少添加一张图片', trigger: 'change' }
           ]
         }
@@ -175,13 +178,27 @@
       }
     },
     methods: {
-      handleUploadSuccess (file) {
-        console.log(file, this.ruleForm.fileList)  // eslint-disable-line no-console
+      handleActUploadSuccess (file) {
+        console.log('handleActUploadSuccess', file, this.ruleForm.fileList)  // eslint-disable-line no-console
         // this.isUploading = false
         if (file.result === 'success') {
           // const d = _.pick(file.data, ['normalImage', 'smallImage', 'largeImage'])
           // d.mainFlag = this.detail.storeImageVos.length === this.detail.coverIndex
           // this.detail.storeImageVos.push(d)
+        } else {
+          this.$notify.error({
+            title: file.messages.join(' '),
+            message: file.errors.join(' ')
+          })
+        }
+      },
+      handleVrUploadSuccess (file) {
+        console.log('handleVrUploadSuccess file', file)  // eslint-disable-line no-console
+        // this.isUploading = false
+        if (file.result === 'success') {
+          // let {id, name, normalImage, smallImage, largeImage} = file.data
+          // this.ruleForm.fileListVr.push({id, name, normalImage, smallImage, largeImage, url: smallImage})
+          // this.$set(this.ruleForm.fileListVr, ++this.ruleForm.fileListVr.length, {id, name, normalImage, smallImage, largeImage, url: smallImage})
         } else {
           this.$notify.error({
             title: file.messages.join(' '),
@@ -213,8 +230,8 @@
       submitActUpload () {
         this.$refs.uploadAct.submit()
       },
-      submitUpload () {
-        this.$refs.upload.submit()
+      submitVrUpload () {
+        this.$refs.uploadVr.submit()
       },
       handleRemove (file, fileList) {
         console.log('handleRemove', file, fileList)
@@ -224,7 +241,7 @@
       },
       handleChange (file, fileList) {
         console.log('handleChange', file, fileList)
-        this.ruleForm.fileList = fileList.slice(-3)
+        // this.ruleForm.fileList = fileList.slice(-3)
       },
       submitForm (formName) {
         // console.log('this.$refs.upload=', this.$refs.upload.uploadFiles)
@@ -238,11 +255,12 @@
               console.log(item, this.ruleForm[item])
               formData.append(item, this.ruleForm[item])
             }
-            let uploadFiles = this.$refs.upload.uploadFiles
-            for (let i = 0, len = uploadFiles.length; i < len; i++) {
-              let imgFile = uploadFiles[i].raw
-              formData.append(`uploadFiles[${i}]`, imgFile)
-            }
+            // // 和表单一起上传 示例
+            // let uploadFiles = this.$refs.upload.uploadFiles
+            // for (let i = 0, len = uploadFiles.length; i < len; i++) {
+            //   let imgFile = uploadFiles[i].raw
+            //   formData.append(`uploadFiles[${i}]`, imgFile)
+            // }
             console.log('formData=', formData)
             this.formDataTest(formData)
             // Post - query stting parameters 方式
