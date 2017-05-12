@@ -60,4 +60,29 @@
   // You can import all your SCSS variables using webpack alias
   @import '~scss_vars';
   @import './style.scss';
+  .container h2, .container h3, .container h4, .container h5{
+    font-weight: 400;
+    color: #1f2f3d;
+  }
+  .container{
+    a {
+      color: #4078c0;
+      text-decoration: none;
+    }
+    h3{
+      margin: 45px 0 15px;
+      font-size: 22px;
+    }
+    p{
+      font-size: 14px;
+      color: #5e6d82;
+      line-height: 1.5em;
+    }
+    .tip{
+      padding: 8px 16px;
+      background-color: #ecf8ff;
+      border-radius: 4px;
+      border-left: 5px solid #50bfff;
+    }
+  }
 </style>
