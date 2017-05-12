@@ -14,6 +14,10 @@ import filters from './filters/index'
 import moment from 'moment'
 Object.defineProperty(Vue.prototype, '$moment', { value: moment })
 
+// 引入axios
+import AxiosPlugin from './plugin/axios.js'
+Vue.use(AxiosPlugin, '$axios')
+
 // Import Install and register helper items
 // Vue.filter('datetime', filters.datetime)
 // Vue.filter('dateonly', filters.dateonly)

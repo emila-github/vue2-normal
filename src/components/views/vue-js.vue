@@ -22,14 +22,14 @@
       <pre>
         export default {
           created() {
-            console.log('The time is ' . this.$moment().format("HH:mm"));
+            console.log('The time is ' . this.$moment().format("HH:mm"))
           }
         }
       </pre>
     </div> 
 
 
-    
+
 
 
   </div>
@@ -45,6 +45,7 @@
     },
     created () {
       console.log('The time is ' + this.$moment().format('HH:mm'))
+      console.log(this.$axios ? 'Axios works!' : 'Uh oh..')
     },
     components: {
     }
