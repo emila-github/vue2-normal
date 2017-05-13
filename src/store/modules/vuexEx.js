@@ -1,11 +1,12 @@
+import * as types from '../types'
 const state = {
   count: 0
 }
 const getters = {
 }
 const mutations = {
-  increment: state => state.count++,
-  decrement: (state) => {
+  [types.VUEXEX_INCREMENT]: state => state.count++,
+  [types.VUEXEX_DECREMENT]: (state) => {
     state.count = state.count - 1
   }
 }
