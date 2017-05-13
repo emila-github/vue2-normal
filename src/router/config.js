@@ -185,6 +185,28 @@ const routes = [
     meta: {title: '递归组件', description: '递归组件递归示例', id: '0102', pid: '01'}
   },
   {
+    path: 'vuex-ex/vuex-ex-local',
+    alias: '',
+    component: resolve => {
+      require.ensure([], () => {
+        resolve(require('../components/views/vuex-ex-local'))
+      })
+    },
+    name: '',
+    meta: {title: '在局部引入vuex', description: '', id: '0201', pid: '02'}
+  },
+  {
+    path: 'vuex-ex/vuex-ex-global',
+    alias: '',
+    component: resolve => {
+      require.ensure([], () => {
+        resolve(require('../components/views/vuex-ex-global'))
+      })
+    },
+    name: '',
+    meta: {title: '在全局引入vuex', description: '', id: '0202', pid: '02'}
+  },
+  {
     path: 'submenu-test/m1',
     alias: '',
     // component: resolve => {s

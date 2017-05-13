@@ -1,11 +1,9 @@
 <template>
   <div class="main">
     <h1>{{ msg }}</h1>
-    <h2>Vuex学习资料</h2>
-    <ul>
-      <li><a href="http://vuex.vuejs.org/zh-cn/" target="_blank">Vuex</a></li>
-    </ul>
-
+    <router-link :to="{ name: 'vuex-ex' }">/vuex-ex</router-link>
+    <router-link :to="{ name: 'vue-ex' }">/vue-ex</router-link>
+    <!--<router-view class="nested-child"></router-view>-->
   </div>
 </template>
 
