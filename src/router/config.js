@@ -58,6 +58,17 @@ const routes = [
   //   meta: {title: 'm3', description: 'm3', id: '03'}
   // },
   {
+    path: 'submenu-test',
+    alias: '',
+    component: resolve => {
+      require.ensure([], () => {
+        resolve(require('../components/views/submenu-test'))
+      })
+    },
+    name: '',
+    meta: {title: 'submenu示例', description: 'submenu示例', id: '00'}
+  },
+  {
     path: 'vue-ex',
     alias: '',
     component: require(`../components/views/vue-ex`),
@@ -174,7 +185,7 @@ const routes = [
     meta: {title: '递归组件', description: '递归组件递归示例', id: '0102', pid: '01'}
   },
   {
-    path: 'vuex-ex/m1',
+    path: 'submenu-test/m1',
     alias: '',
     // component: resolve => {s
     //   require.ensure([], () => {
@@ -182,10 +193,10 @@ const routes = [
     //   })
     // },
     name: '',
-    meta: {title: 'm1', description: 'vuex示例', id: '0201', pid: '02'}
+    meta: {title: 'm1', description: 'submenu示例', id: '0001', pid: '00'}
   },
   {
-    path: 'vuex-ex/m1/m1-1',
+    path: 'submenu-test/m1/m1-1',
     alias: '',
     component: resolve => {
       require.ensure([], () => {
@@ -193,10 +204,10 @@ const routes = [
       })
     },
     name: '',
-    meta: {title: 'm1-1', description: 'vuex示例', id: '020101', pid: '0201'}
+    meta: {title: 'm1-1', description: 'submenu示例', id: '000101', pid: '0001'}
   },
   {
-    path: 'vuex-ex/m1/m1-1/m1-1-1',
+    path: 'submenu-test/m1/m1-1/m1-1-1',
     alias: '',
     component: resolve => {
       require.ensure([], () => {
@@ -204,10 +215,10 @@ const routes = [
       })
     },
     name: '',
-    meta: {title: 'm1-1-1', description: 'vuex示例', id: '02010101', pid: '020101'}
+    meta: {title: 'm1-1-1', description: 'submenu示例', id: '00010101', pid: '000101'}
   },
   {
-    path: 'vuex-ex/m1/m1-1/m1-1-2',
+    path: 'submenu-test/m1/m1-1/m1-1-2',
     alias: '',
     component: resolve => {
       require.ensure([], () => {
@@ -215,10 +226,10 @@ const routes = [
       })
     },
     name: '',
-    meta: {title: 'm1-1-2', description: 'vuex示例', id: '02010102', pid: '020101'}
+    meta: {title: 'm1-1-2', description: 'submenu示例', id: '00010102', pid: '000101'}
   },
   {
-    path: 'vuex-ex/m2',
+    path: 'submenu-test/m2',
     alias: '',
     component: resolve => {
       require.ensure([], () => {
@@ -226,7 +237,7 @@ const routes = [
       })
     },
     name: '',
-    meta: {title: 'm2', description: 'vuex示例', id: '0202', pid: '02'}
+    meta: {title: 'm2', description: 'submenu示例', id: '0002', pid: '00'}
   },
   {
     path: 'element/el01-element-dialog',
