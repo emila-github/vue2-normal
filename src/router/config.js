@@ -207,6 +207,17 @@ const routes = [
     meta: {title: '在全局引入vuex', description: '', id: '0202', pid: '02'}
   },
   {
+    path: 'vuex-ex/vuex-ex-mapState',
+    alias: '',
+    component: resolve => {
+      require.ensure([], () => {
+        resolve(require('../components/views/vuex-ex-mapState'))
+      })
+    },
+    name: '',
+    meta: {title: 'mapState', description: '', id: '0203', pid: '02'}
+  },
+  {
     path: 'submenu-test/m1',
     alias: '',
     // component: resolve => {s
