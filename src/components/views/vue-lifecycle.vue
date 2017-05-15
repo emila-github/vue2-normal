@@ -5,9 +5,9 @@
     <p><input type="text" v-model="message"></p>
     <h3>相关资料</h3>
     <ul>
-      <li><a href="https://cn.vuejs.org/v2/guide/instance.html#生命周期图示" target="_black">生命周期图示</a></li>
-      <li><a href="https://segmentfault.com/a/1190000008010666" target="_black">Vue2.0 探索之路——生命周期和钩子函数的一些理解(看控制台输出)</a></li>
-      <li><a href="https://segmentfault.com/a/1190000008570622" target="_black">关于Vue实例的生命周期created和mounted的区别</a></li>
+      <li><a href="https://cn.vuejs.org/v2/guide/instance.html#生命周期图示" target="_blank">生命周期图示</a></li>
+      <li><a href="https://segmentfault.com/a/1190000008010666" target="_blank">Vue2.0 探索之路——生命周期和钩子函数的一些理解(看控制台输出)</a></li>
+      <li><a href="https://segmentfault.com/a/1190000008570622" target="_blank">关于Vue实例的生命周期created和mounted的区别</a></li>
     </ul>
 
 

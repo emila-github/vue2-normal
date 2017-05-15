@@ -2,7 +2,7 @@
   <div class="main">
     <h1>{{ msg }}</h1>
     <ul>
-      <li><a href="http://mp.weixin.qq.com/s/SJOzGQK9eaeVzyoG-m1tEw" taget="">Vue框架引入JS库的正确姿势</a></li>
+      <li><a href="http://mp.weixin.qq.com/s/SJOzGQK9eaeVzyoG-m1tEw" target="_blank">Vue框架引入JS库的正确姿势</a></li>
     </ul>
 
     <p>最简单靠谱的方式是用库变成Vue的原型对象的属性。</p>
@@ -46,6 +46,8 @@
     created () {
       console.log('The time is ' + this.$moment().format('HH:mm'))
       console.log(this.$axios ? 'Axios works!' : 'Uh oh..')
+      console.log(this.$_.isEmpty() ? 'Lodash is available here!' : 'Uh oh..')
+      console.log(this.$_.defaults({ 'user': 'barney' }, { 'age': 36 }, { 'user': 'fred' }))
     },
     components: {
     }

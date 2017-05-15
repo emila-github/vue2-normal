@@ -14,6 +14,9 @@ import filters from './filters/index'
 import moment from 'moment'
 Object.defineProperty(Vue.prototype, '$moment', { value: moment })
 
+import _ from 'lodash'
+Object.defineProperty(Vue.prototype, '$_', { value: _ })
+
 // 引入axios
 import AxiosPlugin from './plugin/axios.js'
 Vue.use(AxiosPlugin, '$axios')
