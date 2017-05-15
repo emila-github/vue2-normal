@@ -240,6 +240,17 @@ const routes = [
     meta: {title: 'mutations', description: '', id: '0205', pid: '02'}
   },
   {
+    path: 'vuex-ex/vuex-ex-actions',
+    alias: '',
+    component: resolve => {
+      require.ensure([], () => {
+        resolve(require('../components/views/vuex-ex-actions'))
+      })
+    },
+    name: '',
+    meta: {title: 'actions', description: '', id: '0206', pid: '02'}
+  },
+  {
     path: 'submenu-test/m1',
     alias: '',
     // component: resolve => {s

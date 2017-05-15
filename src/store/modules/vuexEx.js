@@ -29,7 +29,6 @@ const mutations = {
   },
   // 提交载荷（Payload）
   'vuexexIncrementPayload' (state, payload) {
-    console.log()
     // 变更状态
     state.count += payload.amount
   },
@@ -41,7 +40,32 @@ const mutations = {
 }
 
 const actions = {
-
+  incrementSync ({ commit }) {
+    console.log('actions incrementSync')
+    commit(types.VUEXEX_INCREMENT)
+  },
+  incrementAsync ({ commit }) {
+    setTimeout(() => {
+      commit(types.VUEXEX_INCREMENT)
+    }, 1000)
+  },
+  decrementAsync ({ commit }) {
+    setTimeout(() => {
+      commit(types.VUEXEX_DECREMENT)
+    }, 1000)
+  },
+  incrementAsyncPayload10 ({ commit, state }, payload) {
+    setTimeout(() => {
+      console.log(state, payload)
+      commit('vuexex/incrementPayload', payload)
+    }, 1000)
+  },
+  decrementAsyncPayload10 (context, payload) {
+    setTimeout(() => {
+      console.log(context.state, payload)
+      context.commit('vuexex/decrementPayload', payload)
+    }, 1000)
+  }
 }
 export default {
   state,
