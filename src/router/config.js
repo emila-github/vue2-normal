@@ -218,6 +218,28 @@ const routes = [
     meta: {title: 'mapState', description: '', id: '0203', pid: '02'}
   },
   {
+    path: 'vuex-ex/vuex-ex-getters',
+    alias: '',
+    component: resolve => {
+      require.ensure([], () => {
+        resolve(require('../components/views/vuex-ex-getters'))
+      })
+    },
+    name: '',
+    meta: {title: 'getters', description: '', id: '0204', pid: '02'}
+  },
+  {
+    path: 'vuex-ex/vuex-ex-mutations',
+    alias: '',
+    component: resolve => {
+      require.ensure([], () => {
+        resolve(require('../components/views/vuex-ex-mutations'))
+      })
+    },
+    name: '',
+    meta: {title: 'mutations', description: '', id: '0205', pid: '02'}
+  },
+  {
     path: 'submenu-test/m1',
     alias: '',
     // component: resolve => {s

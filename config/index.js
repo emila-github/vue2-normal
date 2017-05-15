@@ -28,29 +28,29 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-        // // 添加代理后可以访问线上的接口 ： http://localhost:8080/ty/city/list --> http://vr.17173.com/ty/city/list
-        // '/ty': {
-        //     target: 'http://vr.17173.com/',
-        //     changeOrigin: true
-        // },
-        // '/**/*.do': {
-        //     target: 'http://bptw9y.app.test.173ops.com/',
-        //     changeOrigin: true,
-        //     pathRewrite: {
-        //       '.do': ''
-        //       // '^/mai/' : '/'
-        //     }
-        // },
-        // // 体验店图片上传
-        // '/image/upload': {
-        //     target: 'http://bptw9y.app.test.173ops.com/',
-        //     changeOrigin: true
-        // },
-        // // 活动图片上传
-        // '/api/v2/activity/': {
-        //     target: 'http://p.act.17173.com/',
-        //     changeOrigin: true
-        // }
+        // 添加代理后可以访问线上的接口 ： http://localhost:8080/ty/city/list --> http://vr.17173.com/ty/city/list
+        '/ty': {
+            target: 'http://vr.17173.com/',
+            changeOrigin: true
+        },
+        '/**/*.do': {
+            target: 'http://bptw9y.app.test.173ops.com/',
+            changeOrigin: true,
+            pathRewrite: {
+              '.do': ''
+              // '^/mai/' : '/'
+            }
+        },
+        // 体验店图片上传
+        '/image/upload': {
+            target: 'http://bptw9y.app.test.173ops.com/',
+            changeOrigin: true
+        },
+        // 活动图片上传
+        '/api/v2/activity/': {
+            target: 'http://p.act.17173.com/',
+            changeOrigin: true
+        }
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README
