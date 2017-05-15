@@ -1,3 +1,4 @@
+import Vue from 'vue'
 import * as types from '../types'
 const state = {
   count: 0,
@@ -35,6 +36,11 @@ const mutations = {
   'vuexex/decrementPayload' (state, payload) {
     // 变更状态
     state.count -= payload.amount
+  },
+  gotTestDataAA (state, payload) {
+    // state.dataAA = payload
+    Vue.set(state, 'dataAA', payload)
+    console.log(state)
   }
 
 }
@@ -65,6 +71,26 @@ const actions = {
       console.log(context.state, payload)
       context.commit('vuexex/decrementPayload', payload)
     }, 1000)
+  },
+  actionA ({ commit }) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        commit(types.VUEXEX_INCREMENT)
+        resolve()
+      }, 1000)
+    })
+  },
+  // 两个异步调用
+  actionB ({ dispatch, commit }) {
+    return dispatch('actionA').then(() => {
+      setTimeout(() => {
+        commit(types.VUEXEX_INCREMENT)
+      }, 1000)
+    })
+  },
+  async actionAA ({ commit }) {
+    let datas = await Vue.http.get('/store/list.do').then(datas => datas.data.data.listData)
+    commit('gotTestDataAA', datas)
   }
 }
 export default {

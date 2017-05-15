@@ -6,7 +6,7 @@
       <p>Action 提交的是 mutation，而不是直接变更状态.</p>
       <p>Action 可以包含任意异步操作。</p>
       <p>Action 函数接受一个与 store 实例具有相同方法和属性的 context 对象，因此你可以调用 context.commit 提交一个 mutation，或者通过 context.state 和 context.getters 来获取 state 和 getters。</p>
-      <p>Action 通过 store.dispatch 方法触发：store.dispatch('increment')</p>
+      <p>Action 通过 store.dispatch 方法触发：store.dispatch('increment', payload)</p>
     </div>
   
 
@@ -28,6 +28,13 @@
       <button @click="add">+1(别名调用，1秒后+1)</button>
       <button @click="add10({amount: 10})">+10(别名调用，1秒后+10)</button>
       <button @click="decrementAsync">-1(1秒后-1)</button>
+    </p>
+
+    <p>
+      <button @click="actionA">actionA</button>
+      <button @click="afterActionA">afterActionA</button>
+      <button @click="actionB">actionB</button>
+      <button @click="actionAA">actionAA</button>
     </p>
 
   </div>
@@ -62,9 +69,15 @@
           amount: 10
         })
       },
+      afterActionA () {
+        this.$store.dispatch('actionA').then(() => {
+          console.log('afterActionA')
+        })
+      },
       // 方式2：
       ...mapActions([
-        'incrementSync', 'incrementAsync', 'decrementAsync' // 映射 this.incrementAsync() 为 this.$store.dispatch('incrementAsync')
+        'incrementSync', 'incrementAsync', 'decrementAsync', // 映射 this.incrementAsync() 为 this.$store.dispatch('incrementAsync')
+        'actionA', 'actionB', 'actionAA'
       ]),
       // 方式3：
       ...mapActions({
