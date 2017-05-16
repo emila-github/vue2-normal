@@ -142,10 +142,12 @@
           ],
           fileListAct: [
             {
+              testAttr1: 'testAttr1',
               name: 'food.jpeg',
               url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
             },
             {
+              testAttr1: 'testAttr2',
               name: 'food2.jpeg',
               url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
             }
@@ -193,13 +195,16 @@
     methods: {
       handleActUploadRemove (file, fileList) {
         console.log('handleActUploadRemove', file, fileList)
-        this.ruleForm.fileListActCache = this.$_.reject(this.ruleForm.fileListActCache, {name: file.name})
+        // this.ruleForm.fileListActCache = this.$_.reject(this.ruleForm.fileListActCache, {name: file.name})
+        this.ruleForm.fileListActCache = fileList
       },
       handleActUploadSuccess (response, file, fileList) {
         console.log('handleActUploadSuccess', response, file, fileList)  // eslint-disable-line no-console
         // this.isUploading = false
         if (response.result === 'info.upload.success') {
-          this.ruleForm.fileListActCache.push({name: file.name, url: response.image[0]})
+          file.url = response.image[0] // 导入上传后的URL
+          this.ruleForm.fileListActCache = fileList // 更新上传后图片列表
+          // this.ruleForm.fileListActCache.push({name: file.name, url: response.image[0]})
         } else {
           this.$notify.error({
             title: file.messages.join(' '),
