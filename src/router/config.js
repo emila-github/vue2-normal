@@ -174,6 +174,13 @@ const routes = [
     meta: {title: 'Vue框架引入JS库的正确姿势', description: '', id: '0105', pid: '01'}
   },
   {
+    path: 'vue-ex/form-tinymce',
+    alias: '',
+    component: require(`../components/views/form-tinymce`),
+    name: '',
+    meta: {title: '使用tinymce', description: '', id: '0106', pid: '01'}
+  },
+  {
     path: 'vue-ex/ex01-component-recursive',
     alias: '',
     component: resolve => {
