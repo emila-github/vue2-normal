@@ -87,7 +87,7 @@
           :data="fileParams"
           :on-change="handleChange"
           :on-preview="handlePreview"
-          :on-remove="handleRemove"
+          :on-remove="handleActUploadRemove"
           :file-list="ruleForm.fileListAct"
           list-type="picture"
           :auto-upload="false">
@@ -95,7 +95,10 @@
           <el-button style="margin-left: 10px;" size="small" type="success" @click="submitActUpload">上传到服务器</el-button>
           <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
         </el-upload>
+        <el-form-item prop="fileListActCache">
+        </el-form-item>
       </el-form-item>
+
       <el-form-item>
         <el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
         <el-button @click="resetForm('ruleForm')">重置</el-button>
@@ -137,7 +140,17 @@
             //   url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
             // }
           ],
-          fileListAct: [],
+          fileListAct: [
+            {
+              name: 'food.jpeg',
+              url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
+            },
+            {
+              name: 'food2.jpeg',
+              url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
+            }
+          ],
+          fileListActCache: [],
           fileListVr: []
         },
         rules: {
@@ -163,7 +176,7 @@
           desc: [
             { required: true, message: '请填写活动形式', trigger: 'blur' }
           ],
-          fileListVr: [
+          fileListActCache: [
             { type: 'array', required: true, message: '请至少添加一张图片', trigger: 'change' }
           ]
         }
@@ -178,13 +191,15 @@
       }
     },
     methods: {
-      handleActUploadSuccess (file) {
-        console.log('handleActUploadSuccess', file, this.ruleForm.fileList)  // eslint-disable-line no-console
+      handleActUploadRemove (file, fileList) {
+        console.log('handleActUploadRemove', file, fileList)
+        this.ruleForm.fileListActCache = this.$_.reject(this.ruleForm.fileListActCache, {name: file.name})
+      },
+      handleActUploadSuccess (response, file, fileList) {
+        console.log('handleActUploadSuccess', response, file, fileList)  // eslint-disable-line no-console
         // this.isUploading = false
-        if (file.result === 'success') {
-          // const d = _.pick(file.data, ['normalImage', 'smallImage', 'largeImage'])
-          // d.mainFlag = this.detail.storeImageVos.length === this.detail.coverIndex
-          // this.detail.storeImageVos.push(d)
+        if (response.result === 'info.upload.success') {
+          this.ruleForm.fileListActCache.push({name: file.name, url: response.image[0]})
         } else {
           this.$notify.error({
             title: file.messages.join(' '),
@@ -196,7 +211,6 @@
         console.log('handleVrUploadSuccess file', file)  // eslint-disable-line no-console
         // this.isUploading = false
         if (file.result === 'success') {
-          // let {id, name, normalImage, smallImage, largeImage} = file.data
           // this.ruleForm.fileListVr.push({id, name, normalImage, smallImage, largeImage, url: smallImage})
           // this.$set(this.ruleForm.fileListVr, ++this.ruleForm.fileListVr.length, {id, name, normalImage, smallImage, largeImage, url: smallImage})
         } else {
@@ -274,6 +288,10 @@
       resetForm (formName) {
         this.$refs[formName].resetFields()
       }
+    },
+    created () {
+      console.log('do created')
+      this.ruleForm.fileListActCache = this.$_.cloneDeep(this.ruleForm.fileListAct)
     }
   }
 </script>
