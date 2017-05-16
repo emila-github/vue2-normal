@@ -95,8 +95,6 @@
           <el-button style="margin-left: 10px;" size="small" type="success" @click="submitActUpload">上传到服务器</el-button>
           <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
         </el-upload>
-        <el-form-item prop="fileListActCache">
-        </el-form-item>
       </el-form-item>
 
       <el-form-item>
@@ -152,7 +150,6 @@
               url: 'https://fuss10.elemecdn.com/3/63/4e7f3a15429bfda99bce42a18cdd1jpeg.jpeg?imageMogr2/thumbnail/360x360/format/webp/quality/100'
             }
           ],
-          fileListActCache: [],
           fileListVr: []
         },
         rules: {
@@ -178,7 +175,7 @@
           desc: [
             { required: true, message: '请填写活动形式', trigger: 'blur' }
           ],
-          fileListActCache: [
+          fileListAct: [
             { type: 'array', required: true, message: '请至少添加一张图片', trigger: 'change' }
           ]
         }
@@ -196,14 +193,14 @@
       handleActUploadRemove (file, fileList) {
         console.log('handleActUploadRemove', file, fileList)
         // this.ruleForm.fileListActCache = this.$_.reject(this.ruleForm.fileListActCache, {name: file.name})
-        this.ruleForm.fileListActCache = fileList
+        this.ruleForm.fileListAct = fileList
       },
       handleActUploadSuccess (response, file, fileList) {
         console.log('handleActUploadSuccess', response, file, fileList)  // eslint-disable-line no-console
         // this.isUploading = false
         if (response.result === 'info.upload.success') {
           file.url = response.image[0] // 导入上传后的URL
-          this.ruleForm.fileListActCache = fileList // 更新上传后图片列表
+          this.ruleForm.fileListAct = fileList // 更新上传后图片列表
           // this.ruleForm.fileListActCache.push({name: file.name, url: response.image[0]})
         } else {
           this.$notify.error({
