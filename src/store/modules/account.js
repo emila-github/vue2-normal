@@ -55,20 +55,22 @@ const actions = {
   async signin ({commit}, {username, password}) {
     let datas = await api.login({username, password})
     // 模拟权限开始 =====
-    // 模拟全部权限
-    datas.permission = ['/']
-    routerConfig.forEach(item => {
-      datas.permission.push(`/${item.path}`)
-    })
-    // // 模拟部分权限
-    // datas.permission = [
-    //   '/',
-    //   '/submenu-test',
-    //   '/submenu-test/m1',
-    //   // '/submenu-test/m1/m1-1',
-    //   '/submenu-test/m1/m1-1/m1-1-2'
-    // ]
-    // 模拟权限介绍 =====
+    if (!datas.permission) {
+      // 模拟全部权限
+      datas.permission = ['/']
+      routerConfig.forEach(item => {
+        datas.permission.push(`/${item.path}`)
+      })
+      // // 模拟部分权限
+      // datas.permission = [
+      //   '/',
+      //   '/submenu-test',
+      //   '/submenu-test/m1',
+      //   // '/submenu-test/m1/m1-1',
+      //   '/submenu-test/m1/m1-1/m1-1-2'
+      // ]
+    }
+    // 模拟权限结束 =====
     // console.log('do 1 datas=', datas)
     commit('setUsername', {username})
     commit('setToken', {token: datas.token})
