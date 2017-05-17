@@ -46,10 +46,20 @@ const formatMenu = (menus = []) => {
   })
   return ms
 }
+// 过滤出有权限的菜单
+const filterPermissionMenu = (menus = [], permissions = []) => {
+  let ms = _.cloneDeep(menus)
+  let filterMs = ms.filter(item => {
+    return permissions.includes(`/${item.path}`)
+  })
+  return filterMs
+}
 export default {
-  getAllMenu ({commit}) {
+  getAllMenu ({state, commit}) {
+    let permissions = state.account.permission
     // console.log('getAllMenu menuConfig=', menuConfig)
-    const allMenu = formatMenu(menuConfig)
+    const permissionMenu = filterPermissionMenu(menuConfig, permissions)
+    const allMenu = formatMenu(permissionMenu)
     // console.log('getAllMenu allMenu=', allMenu)
     commit(types.MENU_ORIGIN, {
       menu: menuConfig

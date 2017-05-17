@@ -1,10 +1,11 @@
 import * as api from '../../api/index'
+import routerConfig from '../../router/config' // 模拟全部权限用
 // import Vue from 'vue'
 // import { Notification } from 'element-ui'
 const state = {
   username: sessionStorage.getItem('username') || '',
   token: sessionStorage.getItem('token') || '',
-  permission: sessionStorage.getItem('permission') || []
+  permission: sessionStorage.getItem('permission') && sessionStorage.getItem('permission').split(',') || []
 }
 const mutations = {
   setUsername: (state, {username}) => {
@@ -53,14 +54,21 @@ const actions = {
   // 与上面 signin方法等价
   async signin ({commit}, {username, password}) {
     let datas = await api.login({username, password})
-    // 模拟权限
-    datas.permission = [
-      '/',
-      '/submenu-test',
-      '/submenu-test/m1',
-      '/submenu-test/m1/m1-1',
-      '/submenu-test/m1/m1-1/m1-1-2'
-    ]
+    // 模拟权限开始 =====
+    // 模拟全部权限
+    datas.permission = ['/']
+    routerConfig.forEach(item => {
+      datas.permission.push(`/${item.path}`)
+    })
+    // // 模拟部分权限
+    // datas.permission = [
+    //   '/',
+    //   '/submenu-test',
+    //   '/submenu-test/m1',
+    //   // '/submenu-test/m1/m1-1',
+    //   '/submenu-test/m1/m1-1/m1-1-2'
+    // ]
+    // 模拟权限介绍 =====
     // console.log('do 1 datas=', datas)
     commit('setUsername', {username})
     commit('setToken', {token: datas.token})
@@ -73,11 +81,13 @@ const actions = {
     return api.logout().then((datas) => {
       commit('removeUsername')
       commit('removeToken')
+      commit('removePermission')
     })
   },
   signoutdry ({commit}) {
     commit('removeUsername')
     commit('removeToken')
+    commit('removePermission')
   }
 }
 export default {

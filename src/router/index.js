@@ -61,7 +61,6 @@ router.addRoutes(notFoundRoutes)
 router.beforeEach((to, from, next) => {
   let permissionRoutes = store.state.account.permission
   let hasPermission = permissionRoutes.includes(to.fullPath)
-  console.log('beforeEach', permissionRoutes, store.state.account)
   if (to.meta.withoutAuth) {
     next()
   } else if (!store.state.account.username) {
