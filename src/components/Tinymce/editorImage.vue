@@ -10,7 +10,7 @@
                     :multiple="true"
                     :file-list="fileList"
                     :show-file-list="true"
-                    list-type="picture-card"
+                    list-type="picture"
                     :on-remove="handleRemove"
                     :on-success="handleImageScucess">
                 <el-button size="small" type="primary">点击上传</el-button>
