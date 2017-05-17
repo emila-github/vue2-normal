@@ -90,6 +90,12 @@
         <el-button type="primary" @click="submitForm('ruleForm2')">登录</el-button>
         <el-button @click="resetForm('ruleForm2')">重置</el-button>
       </div>
+      <ul>
+        <li>用户名 = wcj 提示用户不存在</li>
+        <li>密码 = 123456 提示密码错误</li>
+        <li>用户名 = CY3846 登录后获取部分权限</li>
+        <li>用户名 = 任意字符 登录后获取全部权限</li>
+      </ul>
     </el-dialog>
 
   </div>
