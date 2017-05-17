@@ -2,7 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import routerConfig from './config'
 import LoginView from '../components/Login'
-import NotFoundView from '../components/404.vue'
+import NotFoundView from '../components/404'
+import NotPermissionView from '../components/401/index'
 import DashView from '../components/Dash/'
 // import HelloView from '../components/views/Hello'
 // import TestView from '../components/views/Test'
@@ -12,6 +13,12 @@ Vue.use(Router)
 const router = new Router({
   mode: 'history',
   routes: [
+    {
+      path: '/signin',
+      name: 'Login',
+      component: LoginView,
+      meta: {withoutAuth: true}
+    },
     {
       path: '/',
       component: DashView,
@@ -34,24 +41,37 @@ const router = new Router({
       ]
     },
     {
-      path: '/signin',
-      name: 'Login',
-      component: LoginView,
+      // not permission handler
+      path: '/401',
+      component: NotPermissionView,
       meta: {withoutAuth: true}
-    },
-    {
-      // not found handler
-      path: '*',
-      component: NotFoundView
     }
   ]
 })
+
+let notFoundRoutes = [
+  {
+    // not found handler
+    path: '*',
+    component: NotFoundView
+  }
+]
+router.addRoutes(notFoundRoutes)
+// console.log('router===', router)
 router.beforeEach((to, from, next) => {
+  let permissionRoutes = store.state.account.permission
+  let hasPermission = permissionRoutes.includes(to.fullPath)
+  console.log('beforeEach', permissionRoutes, store.state.account)
   if (to.meta.withoutAuth) {
     next()
   } else if (!store.state.account.username) {
     next({
       path: '/signin',
+      query: { redirect: to.fullPath }
+    })
+  } else if (!hasPermission) {
+    next({
+      path: '/401',
       query: { redirect: to.fullPath }
     })
   } else {

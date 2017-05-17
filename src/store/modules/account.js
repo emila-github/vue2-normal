@@ -3,7 +3,8 @@ import * as api from '../../api/index'
 // import { Notification } from 'element-ui'
 const state = {
   username: sessionStorage.getItem('username') || '',
-  token: sessionStorage.getItem('token') || ''
+  token: sessionStorage.getItem('token') || '',
+  permission: sessionStorage.getItem('permission') || []
 }
 const mutations = {
   setUsername: (state, {username}) => {
@@ -25,6 +26,14 @@ const mutations = {
     // console.log('do setUsername')
     state.token = ''
     sessionStorage.removeItem('token')
+  },
+  setPermission (state, {permission}) {
+    state.permission = permission
+    sessionStorage.setItem('permission', permission)
+  },
+  removePermission: (state) => {
+    state.permission = []
+    sessionStorage.removeItem('permission')
   }
 }
 const getters = {
@@ -44,9 +53,18 @@ const actions = {
   // 与上面 signin方法等价
   async signin ({commit}, {username, password}) {
     let datas = await api.login({username, password})
+    // 模拟权限
+    datas.permission = [
+      '/',
+      '/submenu-test',
+      '/submenu-test/m1',
+      '/submenu-test/m1/m1-1',
+      '/submenu-test/m1/m1-1/m1-1-2'
+    ]
     // console.log('do 1 datas=', datas)
     commit('setUsername', {username})
     commit('setToken', {token: datas.token})
+    commit('setPermission', {permission: datas.permission})
     datas.test = 'test'
     return datas
   },

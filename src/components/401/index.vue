@@ -1,0 +1,26 @@
+<template>
+  <div class="container container-table">
+      <div class="row vertical-10p">
+        <div class="container">
+          <img src="../../assets/logo.png" class="center-block logo">
+          <div class="text-center col-sm-6 col-sm-offset-3">
+            <h1>You are lost.</h1>
+            <h4>没有操作权限.</h4>
+            <router-link to="/">Take me home.</router-link>
+          </div>
+        </div>
+      </div>
+  </div>
+</template>
+<script>
+  export default {
+    name: 'NotFound'
+  }
+</script>
+
+<style scoped>
+  .container{
+    width: 200px;
+    margin: 20px auto;
+  }
+</style>
