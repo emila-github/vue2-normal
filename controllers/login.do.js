@@ -34,7 +34,33 @@ module.exports = function(req, res, next) {
     }
   } else {
     // 模拟全部权限用
-    let permissions = ['/', '/submenu-test', '/vue-ex', '/vuex-ex', '/element', '/vue-resource', '/axios', '/vr/store/list', '/vr/store/list/add', '/vue-ex/hello', '/vue-ex/lifecycle', '/vue-ex/vue-componet-countup', '/vue-ex/vue-js', '/vue-ex/form-tinymce', '/vue-ex/ex01-component-recursive', '/vuex-ex/vuex-ex-local', '/vuex-ex/vuex-ex-global', '/vuex-ex/vuex-ex-mapState', '/vuex-ex/vuex-ex-getters', '/vuex-ex/vuex-ex-mutations', '/vuex-ex/vuex-ex-actions', '/submenu-test/m1', '/submenu-test/m1/m1-1', '/submenu-test/m1/m1-1/m1-1-1', '/submenu-test/m1/m1-1/m1-1-2', '/submenu-test/m2', '/element/el01-element-dialog', '/element/el02-element-table', '/element/el03-element-dialog']
+    let permissions = [
+      '/', '/submenu-test',
+      '/vue-ex',
+      '/vuex-ex',
+      '/element',
+      '/vue-resource',
+      '/axios',
+      '/vr/store/list',
+      '/vr/store/list/add',
+      '/vr/store/list/add/:type',
+      '/vue-ex/hello',
+      '/vue-ex/lifecycle',
+      '/vue-ex/vue-componet-countup',
+      '/vue-ex/vue-js',
+      '/vue-ex/form-tinymce',
+      '/vue-ex/ex01-component-recursive',
+      '/vuex-ex/vuex-ex-local',
+      '/vuex-ex/vuex-ex-global',
+      '/vuex-ex/vuex-ex-mapState',
+      '/vuex-ex/vuex-ex-getters',
+      '/vuex-ex/vuex-ex-mutations',
+      '/vuex-ex/vuex-ex-actions',
+      '/submenu-test/m1', '/submenu-test/m1/m1-1', '/submenu-test/m1/m1-1/m1-1-1', '/submenu-test/m1/m1-1/m1-1-2', '/submenu-test/m2',
+      '/element/el01-element-dialog',
+      '/element/el02-element-table',
+      '/element/el03-element-dialog'
+     ]
     data = {
       result: 'success', // failure | success
       messages: ['登录成功'],

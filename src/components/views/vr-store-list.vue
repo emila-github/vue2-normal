@@ -46,7 +46,7 @@
         <el-button @click="resetForm('searchForm')">重置</el-button>
       </el-form-item>
       <el-form-item>
-        <router-link :to="{ path: '/vr/store/list/add'}">
+        <router-link :to="{ path: '/vr/store/list/add/1' }">
           <el-button type="primary" icon="plus">添加</el-button>
         </router-link>
         <el-button type="primary" icon="plus" @click.native.prevent="addRow">添加(click)</el-button>
@@ -187,7 +187,8 @@ export default {
   },
   methods: {
     addRow () {
-      this.$router.push({path: '/vr/store/list/add', params: { flag: 123 }})
+      // this.$router.push({path: '/vr/store/list/add', params: { flag: 123 }})
+      this.$router.push({path: '/vr/store/list/add', query: {plan: 'private'}})
     },
     editRow (index, row) {
       console.log(index, row)
