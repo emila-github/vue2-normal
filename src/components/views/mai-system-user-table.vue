@@ -23,7 +23,7 @@
       </el-form>
     </el-col>
     <!--列表-->
-    <el-table :data="tableDatas" highlight-current-row style="width: 100%;">
+    <el-table :data="tableDatas" highlight-current-row style="width: 100%;" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55">
       </el-table-column>
       <el-table-column type="index" label="序号" width="80">
@@ -280,8 +280,14 @@
       handleFormReset (formName) {
         this.$refs[formName].resetFields()
       },
+      handleSelectionChange (val) {
+        this.sels = val
+        console.log('do handleSelectionChange', this.sels)
+      },
+      // 批量删除
       batchRemove () {
-
+        var ids = this.sels.map(item => item.id).toString()
+        console.log('TODO batchRemove', ids)
       },
       getTables (params) {
         if (this.getTablesStatus === 1) {
