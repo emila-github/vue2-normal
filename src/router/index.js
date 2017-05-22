@@ -59,7 +59,7 @@ let notFoundRoutes = [
 router.addRoutes(notFoundRoutes)
 // console.log('router===', router)
 router.beforeEach((to, from, next) => {
-  console.log('beforeEach=', to, from, next)
+  // console.log('beforeEach=', to, from, next)
   let permissionRoutes = store.state.account.permission
   // let hasPermission = permissionRoutes.includes(to.fullPath)
   let hasPermission = to.matched.some(record => permissionRoutes.includes(record.path))

@@ -59,6 +59,7 @@ module.exports = function(req, res, next) {
       '/submenu-test/m1', '/submenu-test/m1/m1-1', '/submenu-test/m1/m1-1/m1-1-1', '/submenu-test/m1/m1-1/m1-1-2', '/submenu-test/m2',
       '/element/el01-element-dialog',
       '/element/el02-element-table',
+      '/element/mai-system-user-table',
       '/element/el03-element-dialog'
      ]
     data = {

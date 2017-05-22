@@ -346,6 +346,17 @@ const routes = [
     meta: {title: 'element Table 表格', description: '', id: '0302', pid: '03'}
   },
   {
+    path: 'element/mai-system-user-table',
+    alias: '',
+    component: resolve => {
+      require.ensure([], () => {
+        resolve(require('../components/views/mai-system-user-table'))
+      })
+    },
+    name: '',
+    meta: {title: '通用Table功能测试', description: '', id: '0303', pid: '03'}
+  },
+  {
     path: 'element/el03-element-dialog',
     alias: '',
     component: resolve => {
