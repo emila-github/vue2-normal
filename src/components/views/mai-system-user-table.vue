@@ -118,7 +118,7 @@
 
     <!--编辑界面-->
     <el-dialog title="编辑" v-model="editFormVisible" :close-on-click-modal="false" :modal-append-to-body="false">
-      <el-form :model="editForm" label-width="80px" :rules="editFormRules" ref="editForm">
+      <el-form :model="editForm" label-width="120px" :rules="editFormRules" ref="editForm">
         <el-form-item label="用户帐号" prop="userCode">
           <el-input v-model="editForm.userCode" :disabled="true"></el-input>
         </el-form-item>

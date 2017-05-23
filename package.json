@@ -72,6 +72,7 @@
     "karma-webpack": "^2.0.2",
     "lolex": "^1.5.2",
     "mocha": "^3.2.0",
+    "mockjs": "^1.0.1-beta3",
     "nightwatch": "^0.9.12",
     "nodemon": "^1.11.0",
     "opn": "^4.0.2",
