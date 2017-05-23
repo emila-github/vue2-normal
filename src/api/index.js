@@ -107,3 +107,13 @@ export function maiSystemAdminUserCodeCheck (params = {}) {
   // return request('get', '/mai/admin/system/user/code/check.do', null, {params: params})
   return Vue.http.get('/mai/admin/system/user/code/check.do', {params})
 }
+// mai 系统管理   账号管理 批量删除
+export function maiAdminSystemUserBatchDelete (params = {}) {
+  console.log('maiAdminSystemUserBatchDelete', params)
+  /*
+    params = {
+      ids: '23,27'
+    }
+  */
+  return request('post', '/mai/admin/system/user/batchDelete.do', params, {emulateJSON: true})
+}

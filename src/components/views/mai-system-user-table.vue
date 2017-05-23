@@ -167,7 +167,7 @@
 </template>
 
 <script>
-  import { maiAdminSystemUserList, maiAdminSystemUserAdd, maiAdminSystemUserUpdate, maiAdminSystemUserDelete, maiSystemAdminUserCodeCheck } from '../../api/index'
+  import { maiAdminSystemUserList, maiAdminSystemUserAdd, maiAdminSystemUserUpdate, maiAdminSystemUserDelete, maiSystemAdminUserCodeCheck, maiAdminSystemUserBatchDelete } from '../../api/index'
   export default {
     name: 'mai-system-user-table',
     data () {
@@ -288,6 +288,24 @@
       batchRemove () {
         var ids = this.sels.map(item => item.id).toString()
         console.log('TODO batchRemove', ids)
+        this.$confirm('确认批量删除该记录吗?', '提示', {
+          type: 'warning'
+        }).then(() => {
+          this.listLoading = true
+          console.log('do ids', ids)
+          let params = { ids: ids }
+          console.log('do params', params)
+          maiAdminSystemUserBatchDelete(params).then((res) => {
+            this.listLoading = false
+            this.$message({
+              message: '批量删除成功',
+              type: 'success'
+            })
+            this.getTables()
+          })
+        }).catch(() => {
+
+        })
       },
       getTables (params) {
         if (this.getTablesStatus === 1) {

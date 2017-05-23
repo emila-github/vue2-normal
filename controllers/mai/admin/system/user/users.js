@@ -58,11 +58,17 @@ function updateUser (params = {}) {
 		}
 	})
 }
+// 批量删除用户
+function batchDelUser (ids) {
+	let _ids = ids.split(',');
+    Users = Users.filter((user) => !_ids.includes(user.id));
+}
 module.exports = {
 	Users: Users,
 	getUsers: getUsers,
 	getUsersLength: getUsersLength,
 	delUser: delUser,
 	addUser: addUser,
-	updateUser: updateUser
+	updateUser: updateUser,
+	batchDelUser: batchDelUser
 };
