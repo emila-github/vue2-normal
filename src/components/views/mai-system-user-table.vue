@@ -117,7 +117,7 @@
     </el-dialog>
 
     <!--编辑界面-->
-    <el-dialog title="编辑" v-model="editFormVisible" :close-on-click-modal="false" :modal-append-to-body="false">
+    <el-dialog title="编辑用户" v-model="editFormVisible" :close-on-click-modal="false" :modal-append-to-body="false">
       <el-form :model="editForm" label-width="120px" :rules="editFormRules" ref="editForm">
         <el-form-item label="用户帐号" prop="userCode">
           <el-input v-model="editForm.userCode" :disabled="true"></el-input>
@@ -241,8 +241,20 @@
         editFormVisible: false, // 编辑界面是否显示
         editLoading: false,
         editFormRules: {
+          userCode: [
+            { required: true, message: '请输入用户帐号', trigger: 'blur' },
+            { validator: checkUserCode, trigger: 'blur' }
+          ],
           trueName: [
             { required: true, message: '请输入真实姓名', trigger: 'blur' }
+          ],
+          email: [
+            { required: true, message: '请输入邮箱地址', trigger: 'blur' },
+            { type: 'email', message: '请输入正确的邮箱地址', trigger: 'blur,change' }
+          ],
+          mobile: [
+            { required: true, message: '请输入手机号码', trigger: 'blur' },
+            { validator: checkMobile, trigger: 'blur' }
           ]
         },
         // 编辑界面数据
@@ -268,13 +280,11 @@
           : `${this.$moment(row.createTime).format('YYYY-MM-DD HH:mm:ss')}`
       },
       handleCurrentChange (val) {
-        console.log('do handleCurrentChange')
         // console.log(`当前页: ${val}`)
         this.$set(this.tableSearchParams, 'pageNo', val)
         this.getTables()
       },
       handleFormSearch () {
-        console.log('do handleFormSearch')
         this.getTables(this.formSearchParams)
       },
       handleFormReset (formName) {
@@ -292,9 +302,7 @@
           type: 'warning'
         }).then(() => {
           this.listLoading = true
-          console.log('do ids', ids)
           let params = { ids: ids }
-          console.log('do params', params)
           maiAdminSystemUserBatchDelete(params).then((res) => {
             this.listLoading = false
             this.$message({
